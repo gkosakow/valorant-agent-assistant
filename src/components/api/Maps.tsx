@@ -23,11 +23,15 @@ export default function Maps() {
         maps.sort((a, b) => a.mapName.localeCompare(b.mapName))
     };
 
-    retrieveMaps();
+    retrieveMaps().catch(error => {
+        console.log("Agent API error!");
+        console.error(error);
+    });
+    
     console.log(maps);
     return(
         <div>
-            <div>Maps</div>
+            <div>Maps imported</div>
         </div>
     )
 }

@@ -23,9 +23,13 @@ export default function Agents() {
         agents.sort((a, b) => a.agentName.localeCompare(b.agentName))
     };
 
-    retrieveAgents();
+    retrieveAgents().catch(error => {
+        console.log("Agent API error!");
+        console.error(error);
+    });
+
     console.log(agents);
     return(
-        <div>Agents</div>
+        <div>Agents imported</div>
     )
 }
