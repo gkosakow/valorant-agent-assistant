@@ -11,14 +11,14 @@ export default function Maps() {
         const mapURL = "https://valorant-api.com/v1/maps"
         const response = await fetch(mapURL);
         const data = await response.json();
-        
+
         // fills the maps array with responses from maps API besides The Range
-        data.data.forEach((mapData:any) => {
-            if(mapData.displayName !== "The Range"){
-                maps.push({mapName: mapData.displayName, mapImage: mapData.splash})
+        data.data.forEach((mapData: any) => {
+            if (mapData.displayName !== "The Range") {
+                maps.push({ mapName: mapData.displayName, mapImage: mapData.splash })
             }
         })
-        
+
         // sorts maps alphabetically
         maps.sort((a, b) => a.mapName.localeCompare(b.mapName))
     };
@@ -27,9 +27,9 @@ export default function Maps() {
         console.log("Agent API error!");
         console.error(error);
     });
-    
+
     console.log(maps);
-    return(
+    return (
         <div>
             <div>Maps imported</div>
         </div>

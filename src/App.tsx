@@ -3,12 +3,15 @@ import Maps from './components/api/Maps'
 import Agents from './components/api/Agents'
 
 function App() {
-  return (
-    <div className="App">
-      <Maps></Maps>
-      <Agents/>
-    </div>
-  )
+	return (
+		<div className="app">
+			<div className="app-header">HEADER</div>
+			<div className="app-content">
+				<div className="app-sidebar">SIDEBAR</div>
+				<div className="app-stuff">STUFF</div>
+			</div>
+		</div>
+	)
 }
- 
+
 export default App
