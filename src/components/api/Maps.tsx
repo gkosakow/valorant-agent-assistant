@@ -24,11 +24,11 @@ export default function Maps() {
     };
 
     retrieveMaps().catch(error => {
-        console.log("Agent API error!");
+        console.log("Map API error!");
         console.error(error);
     });
 
-    console.log(maps);
+    console.log("Maps array:", maps);
     return (
         <div>
             <div>Maps imported</div>

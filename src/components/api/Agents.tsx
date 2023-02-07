@@ -1,7 +1,8 @@
 
 interface Agent {
     agentName: string,
-    agentImage: string
+    agentImage: string,
+    agentRole: string
 }
 
 export default function Agents() {
@@ -15,7 +16,7 @@ export default function Agents() {
         // fills the agents array from API response besides duplicate Sova
         data.data.forEach((agentData: any) => {
             if (agentData.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
-                agents.push({ agentName: agentData.displayName, agentImage: agentData.displayIcon })
+                agents.push({ agentName: agentData.displayName, agentImage: agentData.displayIcon, agentRole: agentData.role.displayName })
             }
         })
 
@@ -28,7 +29,7 @@ export default function Agents() {
         console.error(error);
     });
 
-    console.log(agents);
+    console.log("Agents array:", agents);
     return (
         <div>Agents imported</div>
     )
