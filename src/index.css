@@ -16,29 +16,37 @@ body, html {
   color: white;
 }
 
-.app-header {
-  background-color: #404163;
-  height: 6rem;
-  border: 2px solid white;
+.sidebar {
+  background-color: #181a2d;
+  height: 100vh;
+  width: 20%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.sidebar-content {
+  height: 78%;
 }
 
 .app-content{
+  background-color: #1e2036;
+  width: 80%;
+  padding: 2rem;
+}
+
+.container {
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  text-align: center;
+  padding: 2rem;
+}
+
+.credits {
+  margin: auto;
   display: inline-block;
-  height: 60rem;
-}
-
-.app-sidebar {
-  background-color: #404163;
-  height: 100%;
-  width: 15%;
-  border: 2px solid white;
-  
-}
-
-.app-stuff {
- 
-  background-color: #404163;
-  height: 100%;
-  width: 85%;
-  border: 2px solid white;
+  align-self: flex-end;
+  color: #5d5f82;
+  padding: 2rem;
 }
