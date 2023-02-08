@@ -5,7 +5,7 @@ interface Agent {
     agentRole: string
 }
 
-export default function Agents() {
+const Agents = () => {
     const agents: Agent[] = [];
 
     async function retrieveAgents() {
@@ -34,3 +34,5 @@ export default function Agents() {
         <div>Agents imported</div>
     )
 }
+
+export default Agents;

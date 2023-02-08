@@ -9,6 +9,8 @@
 body, html {
   background-color: #2c2d48;
   margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .app {
@@ -17,6 +19,7 @@ body, html {
 }
 
 .sidebar {
+  position: relative;
   background-color: #181a2d;
   height: 100vh;
   width: 20%;
@@ -44,9 +47,9 @@ body, html {
 }
 
 .credits {
-  margin: auto;
-  display: inline-block;
-  align-self: flex-end;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   color: #5d5f82;
   padding: 2rem;
 }

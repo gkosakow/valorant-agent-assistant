@@ -1,30 +1,22 @@
-import React from "react";
 import {
     Breadcrumb,
     BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbSeparator,
     Center
 } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/react'
 
 const Credits = () => {
     return (
         <Center className="credits">
             <Breadcrumb separator='|'>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
+                    <Link href="">Home</Link>
                 </BreadcrumbItem>
-
                 <BreadcrumbItem>
-                    <BreadcrumbLink href='#'>About</BreadcrumbLink>
+                    <Link href="">About</Link>
                 </BreadcrumbItem>
-
-                <BreadcrumbItem isCurrentPage>
-                    <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
-                </BreadcrumbItem>
-
-                <BreadcrumbItem isCurrentPage>
-                    <BreadcrumbLink href='#'>GitHub</BreadcrumbLink>
+                <BreadcrumbItem>
+                    <Link href="https://github.com/gkosakow">GitHub</Link>
                 </BreadcrumbItem>
             </Breadcrumb>
         </Center>

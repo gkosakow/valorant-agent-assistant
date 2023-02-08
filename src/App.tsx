@@ -3,6 +3,7 @@ import Maps from './components/api/Maps'
 import Agents from './components/api/Agents'
 import Credits from './components/Credits'
 import { Box, Image } from '@chakra-ui/react'
+import Players from './components/Players'
 
 function App() {
 	return (
@@ -13,6 +14,9 @@ function App() {
 						<Image src="/assets/valorant-logo.png" />
 					</Box>
 					<Box className="sidebar-content">
+						<Agents />
+						<Maps />
+						<Players />
 					</Box>
 					<Credits />
 				</Box>
