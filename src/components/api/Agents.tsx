@@ -31,7 +31,7 @@ const Agents = () => {
 
     console.log("Agents array:", agents);
     return (
-        <div>Agents imported</div>
+        <div></div>
     )
 }
 

@@ -31,7 +31,7 @@ export default function Maps() {
     console.log("Maps array:", maps);
     return (
         <div>
-            <div>Maps imported</div>
+            <div></div>
         </div>
     )
 }
