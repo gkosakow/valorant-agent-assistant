@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Maps from './components/api/Maps'
-import Agents from './components/api/Agents'
+import Players from './components/Players'
+import Maps from './components/api/MapList'
+import Agents from './components/api/AgentList'
 import Credits from './components/Credits'
 import { Box } from '@mui/system'
-import Players from './components/Players'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({
@@ -22,15 +22,16 @@ function App() {
 							<img src="/assets/valorant-logo.png" />
 						</Box>
 						<Box className="sidebar-content">
-							<Agents />
-							<Maps />
 							<Players />
 						</Box>
 						<Box className="credits">
 							<Credits />
 						</Box>
 					</Box>
-					<Box className="app-content"></Box>
+					<Box className="app-content">
+						{/* <Agents /> */}
+						<Maps />
+					</Box>
 				</Box>
 			</Box >
 		</ThemeProvider>

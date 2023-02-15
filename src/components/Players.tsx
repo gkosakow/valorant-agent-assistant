@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import agents from "./api/Agents";
+import agents from "./api/AgentList";
 import { Container, Stack, TextField } from "@mui/material";
 
 interface Player {
@@ -17,11 +17,14 @@ const playerNames = () => {
         { name: "Player 5", riotID: "" }]);
 
 
+    function handleChangeUser() {
+
+    }
 
     return (
         <Container className="container">
             <Stack spacing={2}>
-                <TextField fullWidth label="Player 1" size="small" />
+                <TextField fullWidth onChange={() => handleChangeUser} label="Player 1" size="small" />
                 <TextField fullWidth label="Player 2" size="small" />
                 <TextField fullWidth label="Player 3" size="small" />
                 <TextField fullWidth label="Player 4" size="small" />
