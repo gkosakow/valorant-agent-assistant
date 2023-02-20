@@ -16,21 +16,19 @@ function App() {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Box className="app">
-				<Box className="container">
-					<Box className="sidebar">
-						<Box className="logo">
-							<img src="/assets/valorant-logo.png" />
-						</Box>
-						<Box className="sidebar-content">
-							<Players />
-						</Box>
-						<Box className="credits">
-							<Credits />
-						</Box>
+				<Box className="sidebar">
+					<Box className="logo">
+						<img src="/assets/valorant-logo.png" />
 					</Box>
-					<Box className="app-content">
-						<Maps />
+					<Box className="sidebar-content">
+						<Players />
 					</Box>
+					<Box className="credits">
+						<Credits />
+					</Box>
+				</Box>
+				<Box className="app-content">
+					<Maps />
 				</Box>
 			</Box >
 		</ThemeProvider>
