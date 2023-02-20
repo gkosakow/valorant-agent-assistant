@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import { Box, Grid } from "@mui/material";
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Paper from "@mui/material/Paper";
 
 // defining the Map interface to store the map name and splash image
 interface Map {
@@ -7,7 +12,7 @@ interface Map {
 	mapImage: string
 }
 
-function Maps() {
+const Maps = () => {
 	const [mapList, setMapList] = useState<Map[]>([]);
 
 	// function to use maps valorant API to update dynamically with every new map
@@ -39,17 +44,30 @@ function Maps() {
 		});
 	}, []);
 
-	const mapCards = mapList.map(map => (
-		<div key={map.mapID}>
-			<p>{map.mapName}</p>
-		</div>
-	));
-
 	// DEBUGGINGs
 	console.log("Maps array", mapList);
 
 	return (
-		<div>MAPS{mapCards}</div>
+		<Box sx={{ width: '100%' }} className="map-grid">
+			<Grid container rowSpacing={0} columnSpacing={3}>
+				<Grid item xs={12}>
+					{mapList.map(map => (
+						<Paper className="map-card" key={map.mapID}>
+							<CardMedia
+								sx={{ height: 180 }}
+								image={map.mapImage}
+								title={map.mapName}
+							/>
+							<CardContent>
+								<Typography gutterBottom variant="h5" component="div">
+									{map.mapName}
+								</Typography>
+							</CardContent>
+						</Paper>
+					))}
+				</Grid>
+			</Grid>
+		</Box>
 	)
 }
 
