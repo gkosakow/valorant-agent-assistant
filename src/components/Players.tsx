@@ -6,7 +6,7 @@ interface Player {
 	riotID: string;
 }
 
-const playerNames = () => {
+const Players = () => {
 
 	const [players, setPlayers] = useState<Player[]>(
 		[{ name: "Player 1", riotID: "" },
@@ -32,4 +32,4 @@ const playerNames = () => {
 	)
 }
 
-export default playerNames;
+export default Players;

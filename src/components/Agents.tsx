@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; import { fontSize } from "@mui/system";
+import { useState, useEffect } from "react";
 
 // defining the Agent interface to store the agent ID, name, image, and role
 interface Agent {

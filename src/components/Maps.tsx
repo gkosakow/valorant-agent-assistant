@@ -52,17 +52,12 @@ const Maps = () => {
 			<Grid container rowSpacing={0} columnSpacing={0}>
 				<Grid item xs={12}>
 					{mapList.map(map => (
-						<Card className="map-card" key={map.mapID} elevation={4} sx={{ borderRadius: 3 }}>
-							<CardMedia
-								sx={{ height: 180 }}
-								image={map.mapImage}
-								title={map.mapName}
-							/>
-							<CardContent sx={{}}>
-								<Typography gutterBottom variant="h5" component="div">
-									{map.mapName}
-								</Typography>
-							</CardContent>
+						<Card className="map-card" key={map.mapID} elevation={3} sx={{ borderRadius: 3 }}>
+							<div className="map-card-background" style={{
+								backgroundImage: `url(${map.mapImage})`
+							}}>
+								<h1>{map.mapName}</h1>
+							</div>
 						</Card>
 					))}
 				</Grid>
