@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
+import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import Paper from "@mui/material/Paper";
 
-// defining the Map interface to store the map name and splash image
+// defining the Map interface to store the map ID, name, and splash image
 interface Map {
 	mapID: string,
 	mapName: string,
@@ -49,21 +49,21 @@ const Maps = () => {
 
 	return (
 		<Box sx={{ width: '100%' }} className="map-grid">
-			<Grid container rowSpacing={0} columnSpacing={3}>
+			<Grid container rowSpacing={0} columnSpacing={0}>
 				<Grid item xs={12}>
 					{mapList.map(map => (
-						<Paper className="map-card" key={map.mapID}>
+						<Card className="map-card" key={map.mapID} elevation={4} sx={{ borderRadius: 3 }}>
 							<CardMedia
 								sx={{ height: 180 }}
 								image={map.mapImage}
 								title={map.mapName}
 							/>
-							<CardContent>
+							<CardContent sx={{}}>
 								<Typography gutterBottom variant="h5" component="div">
 									{map.mapName}
 								</Typography>
 							</CardContent>
-						</Paper>
+						</Card>
 					))}
 				</Grid>
 			</Grid>

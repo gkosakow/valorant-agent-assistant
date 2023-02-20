@@ -7,7 +7,7 @@ const Credits = () => {
 			<Breadcrumbs separator='|' color="hover">
 				<Link href="" color="inherit" underline="hover">Home</Link>
 				<Link href="" color="inherit" underline="hover">About</Link>
-				<Link href="https://github.com/gkosakow" color="inherit" underline="hover">GitHub</Link>
+				<Link href="https://github.com/gkosakow" color="inherit" underline="hover" target="_blank" rel="noreferrer">GitHub</Link>
 			</Breadcrumbs>
 		</div>
 	)

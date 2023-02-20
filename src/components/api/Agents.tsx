@@ -1,4 +1,6 @@
-// defining the Agent interface to store the agent name, image, and role
+import { useState, useEffect } from "react"; import { fontSize } from "@mui/system";
+
+// defining the Agent interface to store the agent ID, name, image, and role
 interface Agent {
 	agentID: string,
 	agentName: string,
@@ -7,35 +9,43 @@ interface Agent {
 }
 
 const Agents = () => {
-	const agentList: Agent[] = [];
+	const [agentList, setAgentList] = useState<Agent[]>([]);
 
-	// function to use agents from valorant API to update dynamically with every new agent
-	async function retrieveAgents() {
-		const agentURL = "https://valorant-api.com/v1/agents"
-		const response = await fetch(agentURL);
-		const agentData = await response.json();
+	// function to use agents valorant API to update dynamically with every new agent
+	useEffect(() => {
+		async function retrieveAgents() {
+			const agentURL = "https://valorant-api.com/v1/agents"
+			const response = await fetch(agentURL);
+			const agentData = await response.json();
 
-		// fills the agents array from API response besides duplicate Sova
-		agentData.data.forEach((agent: any) => {
-			if (agent.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
-				agentList.push({ agentID: agent.uuid, agentName: agent.displayName, agentImage: agent.displayIcon, agentRole: agent.role.displayName })
-			}
-		})
+			let updatedAgentList: Agent[] = []
 
-		// sorts agents alphabetically
-		agentList.sort((a, b) => a.agentName.localeCompare(b.agentName))
-	};
+			// fills the agents array with responses from agents API besides The Range
+			agentData.data.map((agent: any) => {
+				if (agent.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
+					updatedAgentList.push({ agentID: agent.uuid, agentName: agent.displayName, agentImage: agent.displayIcon, agentRole: agent.role.displayName });
+				}
+			})
 
-	// catches errors and logs them to the console
-	retrieveAgents().catch(error => {
-		console.log("Agent API error!");
-		console.error(error);
-	});
+			// sorts agents array alphabetically
+			updatedAgentList.sort((a, b) => a.agentName.localeCompare(b.agentName))
 
-	// DEBUGGING
-	console.log("Agents array", agentList);
+			// setting agentList to updatedAgentList
+			setAgentList(updatedAgentList);
+		};
 
-	return (agentList);
+		// error handling to console
+		retrieveAgents().catch(error => {
+			console.error("Agent API error!", error);
+		});
+	}, []);
+
+	// DEBUGGINGs
+	console.log("Agent array", agentList);
+
+	return (
+		<div></div>
+	)
 }
 
 export default Agents;
