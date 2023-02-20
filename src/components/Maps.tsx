@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import MapCard from "./MapCard";
 
 // defining the Map interface to store the map ID, name, and splash image
-interface Map {
+export interface Map {
 	mapID: string,
 	mapName: string,
-	mapImage: string
+	mapImage: string,
+	mapCoords: string
 }
 
 const Maps = () => {
@@ -27,7 +25,7 @@ const Maps = () => {
 			// fills the maps array with responses from maps API besides The Range
 			mapData.data.map((map: any) => {
 				if (map.displayName !== "The Range") {
-					updatedMapList.push({ mapID: map.uuid, mapName: map.displayName, mapImage: map.splash });
+					updatedMapList.push({ mapID: map.uuid, mapName: map.displayName, mapImage: map.splash, mapCoords: map.coordinates });
 				}
 			})
 
@@ -49,18 +47,12 @@ const Maps = () => {
 
 	return (
 		<Box sx={{ width: '100%' }} className="map-grid">
-			<Grid container rowSpacing={0} columnSpacing={0}>
-				<Grid item xs={12}>
-					{mapList.map(map => (
-						<Card className="map-card" key={map.mapID} elevation={3} sx={{ borderRadius: 3 }}>
-							<div className="map-card-background" style={{
-								backgroundImage: `url(${map.mapImage})`
-							}}>
-								<h1>{map.mapName}</h1>
-							</div>
-						</Card>
-					))}
-				</Grid>
+			<Grid container>
+				{mapList.map(map => (
+					<Grid item xs={6} key={map.mapID}>
+						<MapCard map={map} />
+					</Grid>
+				))}
 			</Grid>
 		</Box>
 	)

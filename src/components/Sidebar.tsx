@@ -6,7 +6,7 @@ const Sidebar = () => {
 	return (
 		<Box className="sidebar">
 			<Box className="logo">
-				<img src="/assets/valorant-logo.png" />
+				<img src="./src/assets/images/valorant-logo.png" />
 			</Box>
 			<Box className="sidebar-content">
 				<Players />

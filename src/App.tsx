@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { Box } from '@mui/material'
+import { useState } from 'react';
+import "./assets/fonts/Tungsten-Bold/Tungsten-Bold.ttf";
+import { Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Agents from './components/Agents';
 import Maps from './components/Maps';
 import Sidebar from './components/Sidebar';
 
@@ -16,6 +18,7 @@ function App() {
 			<Box className="app">
 				<Sidebar />
 				<Box className="app-content">
+					<Agents />
 					<Maps />
 				</Box>
 			</Box >

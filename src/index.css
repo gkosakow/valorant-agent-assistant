@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Tungsten";   /*Can be any text*/
+  src: local("Tungsten-Bold"),
+    url("./assets/fonts/Tungsten-Bold/Tungsten-Bold.ttf") format("truetype");
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   
@@ -49,6 +55,7 @@ body{
   width: 80%;
   height: 100%;
   overflow-y: auto;
+  padding: 1rem;
 }
 
 .container {
@@ -84,20 +91,32 @@ body{
   display: flexbox;
 }
 
-.map-card-background {
-  background: linear-gradient(blue, pink);
+.map-card {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 250px;
+  max-height: 250px;
+  margin: .5rem;
 }
 
-.map-card {
-  margin: 20px;
+.map-card-text {
+  padding-left: 2rem;
+  padding-top: 1.1rem;
+  text-shadow: 1px 1px 30px black;
 }
 
 .map-card h1 {
+  font-family: "Tungsten";
   text-align: left;
-  padding: 2rem;
-  text-shadow: 3px 3px 6px black;
+  font-size: 60px;
+}
+
+.map-card p {
+  text-align: left;
+  font-size: 8px;
+}
+
+.map-card-agents {
+  
 }

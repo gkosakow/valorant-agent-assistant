@@ -5,7 +5,8 @@ interface Agent {
 	agentID: string,
 	agentName: string,
 	agentImage: string,
-	agentRole: string
+	agentRole: string,
+	agentRoleIcon: string
 }
 
 const Agents = () => {
@@ -23,7 +24,7 @@ const Agents = () => {
 			// fills the agents array with responses from agents API besides The Range
 			agentData.data.map((agent: any) => {
 				if (agent.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
-					updatedAgentList.push({ agentID: agent.uuid, agentName: agent.displayName, agentImage: agent.displayIcon, agentRole: agent.role.displayName });
+					updatedAgentList.push({ agentID: agent.uuid, agentName: agent.displayName, agentImage: agent.displayIcon, agentRole: agent.role.displayName, agentRoleIcon: agent.role.displayIcon });
 				}
 			})
 
