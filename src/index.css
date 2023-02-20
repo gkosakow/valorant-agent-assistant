@@ -34,6 +34,8 @@ body, html {
   background-color: #1e2036;
   width: 80%;
   padding: 2rem;
+  display: grid;
+  
 }
 
 .container {
@@ -43,7 +45,7 @@ body, html {
 .logo {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 10%;
 }
 
 .logo img {
