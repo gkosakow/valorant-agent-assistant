@@ -46,10 +46,10 @@ const Maps = () => {
 	console.log("Maps array", mapList);
 
 	return (
-		<Box sx={{ width: '100%' }} className="map-grid">
+		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">
 			<Grid container>
 				{mapList.map(map => (
-					<Grid item xs={6} key={map.mapID}>
+					<Grid item xs={12} md={12} lg={6} key={map.mapID}>
 						<MapCard map={map} />
 					</Grid>
 				))}
