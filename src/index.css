@@ -120,7 +120,7 @@ body{
 }
 
 .map-card-agents {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), black);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(29, 32, 48));
   position: absolute;
   bottom: 0;
   height: 50%;
@@ -143,8 +143,8 @@ body{
 }
 
 .agent-button {
-  width: 16%;
-  height: 100%;
+  width: 75px;
+  height: 75px;
   margin-left: .5rem;
   margin-right: .5rem;
 }
