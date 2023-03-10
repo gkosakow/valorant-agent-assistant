@@ -18,7 +18,6 @@ function App() {
 			<Box className="app">
 				<Sidebar />
 				<Box className="app-content">
-					<Agents />
 					<Maps />
 				</Box>
 			</Box >
