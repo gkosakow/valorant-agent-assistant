@@ -1,22 +1,35 @@
-import React from 'react';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button/Button';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Agent } from './Agents';
 
-export interface SimpleDialogProps {
-    open: boolean;
-    selectedValue: string;
-    onClose: (value: string) => void;
-}
+const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
+    const [selectedAgent, setSelectedAgent] = useState<string>("");
 
-const AgentButton = () => {
+    const handleChange = (event: SelectChangeEvent) => {
+        setSelectedAgent(event.target.value);
+    };
+
     return (
-        <div className="button-row">
-            <button className="agent-button">TEST</button>
-            <button className="agent-button">TEST</button>
-            <button className="agent-button">TEST</button>
-            <button className="agent-button">TEST</button>
-            <button className="agent-button">TEST</button>
-        </div>
+        <Box sx={{ minWidth: 120 }}>
+            <FormControl className="agent-button" fullWidth>
+                <InputLabel id="agent-select-label">Agent</InputLabel>
+                <Select
+                    labelId="agent-select-label"
+                    id="agent-select"
+                    value={selectedAgent}
+                    label="Age"
+                    onChange={handleChange}
+                >
+                    {agentList.map(agent => (
+                        <MenuItem key={agent.agentID} value={agent.agentName}>{agent.agentName}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </Box>
     )
 }
 

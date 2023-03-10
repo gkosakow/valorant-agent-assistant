@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import AgentButton from "./AgentButton";
 
 // defining the Agent interface to store the agent ID, name, image, and role
-interface Agent {
+export interface Agent {
 	agentID: string,
 	agentName: string,
 	agentImage: string,
@@ -41,11 +42,14 @@ const Agents = () => {
 		});
 	}, []);
 
-	// DEBUGGINGs
-	console.log("Agent array", agentList);
-
 	return (
-		<div></div>
+		<div className="button-row">
+			<AgentButton agentList={agentList} />
+			<AgentButton agentList={agentList} />
+			<AgentButton agentList={agentList} />
+			<AgentButton agentList={agentList} />
+			<AgentButton agentList={agentList} />
+		</div>
 	)
 }
 
