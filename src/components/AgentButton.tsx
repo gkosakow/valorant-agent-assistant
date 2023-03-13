@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -15,8 +14,7 @@ const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
 
     return (
         <Box sx={{ minWidth: 120 }}>
-            <FormControl className="agent-button" fullWidth>
-                <InputLabel id="agent-select-label">Agent</InputLabel>
+            <FormControl className="agent-button" >
                 <Select
                     labelId="agent-select-label"
                     id="agent-select"
@@ -25,9 +23,10 @@ const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
                     onChange={handleChange}
                 >
                     {agentList.map(agent => (
-                        <MenuItem key={agent.agentID} value={agent.agentName}>{agent.agentName}</MenuItem>
+                        <MenuItem key={agent.agentID} value={agent.agentName} >{agent.agentName}</MenuItem>
                     ))}
                 </Select>
+                <>test</>
             </FormControl>
         </Box>
     )

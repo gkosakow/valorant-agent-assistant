@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Stack, TextField, Divider } from "@mui/material";
+import { Container, Stack, OutlinedInput, Divider } from "@mui/material";
 
 interface Player {
 	playerNum: number,
@@ -24,11 +24,17 @@ const Players = () => {
 
 	return (
 		<Container className="players">
-			<p>ROSTER</p>
+			<p>TEAM ROSTER</p>
 			<Divider />
 			<Stack className="player-stack" spacing={2}>
 				{players.map(player => (
-					<TextField key={player.playerNum} fullWidth onChange={(e) => handleChangePlayer(e.target.value, player.playerNum)} label={`Player ${player.playerNum}`} size="small" autoComplete='off' />
+					<OutlinedInput
+						key={player.playerNum}
+						fullWidth
+						onChange={(e) => handleChangePlayer(e.target.value, player.playerNum)}
+						placeholder={`Player ${player.playerNum}`}
+						size="small"
+						autoComplete='off' />
 				))}
 			</Stack>
 		</Container>
