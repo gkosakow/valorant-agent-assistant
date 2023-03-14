@@ -23,10 +23,10 @@ const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
                     onChange={handleChange}
                 >
                     {agentList.map(agent => (
-                        <MenuItem key={agent.agentID} value={agent.agentName} >{agent.agentName}</MenuItem>
+                        <MenuItem key={agent.agentID} value={agent.agentName}>{agent.agentName}</MenuItem>
                     ))}
                 </Select>
-                <>test</>
+                <>PLAYER</>
             </FormControl>
         </Box>
     )
