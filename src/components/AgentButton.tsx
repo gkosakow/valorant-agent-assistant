@@ -14,19 +14,15 @@ const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
 
     return (
         <Box sx={{ minWidth: 120 }}>
-            <FormControl className="agent-button" >
+            <FormControl sx={{ minWidth: 30 }}>
                 <Select
-                    labelId="agent-select-label"
-                    id="agent-select"
                     value={selectedAgent}
-                    label="Age"
                     onChange={handleChange}
+                    displayEmpty
+                    inputProps={{ IconComponent: () => null }}
                 >
-                    {agentList.map(agent => (
-                        <MenuItem key={agent.agentID} value={agent.agentName}>{agent.agentName}</MenuItem>
-                    ))}
+                    {agentList.map(agent => (<MenuItem key={agent.agentID} value={agent.agentImage}><img className="agent-button" src={agent.agentImage} /></MenuItem>))}
                 </Select>
-                <>PLAYER</>
             </FormControl>
         </Box>
     )
