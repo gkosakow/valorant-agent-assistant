@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Loading firebaseConfig with env variables
@@ -16,12 +16,22 @@ const firebaseConfig = {
 
 // Initializing the firebase app and analytics
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // Initializing the firestore from the app config
 const db = getFirestore(app);
 
 // Initializing firebase authentication and get a reference to the service
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider;
 
+export {auth, provider};
 
-const analytics = getAnalytics(app);
+// const loginEmailPassword = async () => {
+//     const loginEmail = txtEmail.value;
+//     const loginPassword = txtPassword.value;
+    
+//     const userCredentials = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+//     console.log(userCredentials.user)
+// }
+
