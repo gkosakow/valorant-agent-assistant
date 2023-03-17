@@ -44,7 +44,7 @@ const Agents = ({ map }: { map: Map }) => {
 	}, []);
 
 	return (
-		<div className="button-row">
+		<div className="agent-button-row">
 			<AgentButton agentList={agentList} map={map} />
 			<AgentButton agentList={agentList} map={map} />
 			<AgentButton agentList={agentList} map={map} />
