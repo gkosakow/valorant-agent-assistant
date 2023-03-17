@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import AgentButton from "./AgentButton";
+import { Map } from "./Maps";
 
 // defining the Agent interface to store the agent ID, name, image, and role
 export interface Agent {
@@ -10,7 +11,7 @@ export interface Agent {
 	agentRoleIcon: string
 }
 
-const Agents = () => {
+const Agents = ({ map }: { map: Map }) => {
 	const [agentList, setAgentList] = useState<Agent[]>([]);
 
 	// function to use agents valorant API to update dynamically with every new agent
@@ -44,11 +45,11 @@ const Agents = () => {
 
 	return (
 		<div className="button-row">
-			<AgentButton agentList={agentList} />
-			<AgentButton agentList={agentList} />
-			<AgentButton agentList={agentList} />
-			<AgentButton agentList={agentList} />
-			<AgentButton agentList={agentList} />
+			<AgentButton agentList={agentList} map={map} />
+			<AgentButton agentList={agentList} map={map} />
+			<AgentButton agentList={agentList} map={map} />
+			<AgentButton agentList={agentList} map={map} />
+			<AgentButton agentList={agentList} map={map} />
 		</div>
 	)
 }

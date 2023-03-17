@@ -4,27 +4,32 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Agent } from './Agents';
+import { Map } from './Maps';
 
-const AgentButton = ({ agentList }: { agentList: Agent[] }) => {
+const AgentButton = ({ agentList, map }: { agentList: Agent[], map: Map }) => {
     const [selectedAgent, setSelectedAgent] = useState<string>("");
 
     const handleChange = (event: SelectChangeEvent) => {
         setSelectedAgent(event.target.value);
     };
 
+    // let index = mapList.map(function(e){ return e.name; }).indexOf("Breeze");
+
     return (
-        <Box sx={{ minWidth: 120 }}>
-            <FormControl sx={{ minWidth: 30 }}>
+        <Box sx={{ minWidth: 75 }} >
+            <FormControl sx={{ minWidth: 30 }} size="medium">
                 <Select
+                    autoWidth
+                    IconComponent={() => null}
+                    className="agent-button"
+                    inputProps={{ sx: { padding: 0 } }}
                     value={selectedAgent}
                     onChange={handleChange}
-                    displayEmpty
-                    inputProps={{ IconComponent: () => null }}
                 >
-                    {agentList.map(agent => (<MenuItem key={agent.agentID} value={agent.agentImage}><img className="agent-button" src={agent.agentImage} /></MenuItem>))}
+                    {agentList.map(agent => (<MenuItem key={agent.agentID} value={agent.agentImage}><img className="agent-in-list" src={agent.agentImage} /></MenuItem>))}
                 </Select>
             </FormControl>
-        </Box>
+        </Box >
     )
 }
 

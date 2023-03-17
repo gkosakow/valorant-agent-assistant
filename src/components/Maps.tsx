@@ -42,9 +42,6 @@ const Maps = () => {
 		});
 	}, []);
 
-	// DEBUGGINGs
-	console.log("Maps array", mapList);
-
 	return (
 		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">
 			<Grid container>
