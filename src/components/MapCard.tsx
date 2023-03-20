@@ -8,6 +8,7 @@ const MapCard = ({ map }: { map: Map }) => {
         <Card className="map-card" elevation={3} sx={{ borderRadius: 3 }} style={{
             backgroundImage: `url(${map.mapImage})`
         }}>
+            <div className="map-card-gradient" />
             <div className="map-card-contents">
                 <div className="map-card-text" >
                     <h1>{map.mapName.toUpperCase()}</h1>
@@ -17,7 +18,6 @@ const MapCard = ({ map }: { map: Map }) => {
                     <Agents map={map} />
                 </div>
             </div>
-            <div className="map-card-gradient" />
         </Card >
     )
 };

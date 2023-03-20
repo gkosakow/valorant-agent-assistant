@@ -7,26 +7,34 @@ import { Agent } from './Agents';
 import { Map } from './Maps';
 
 const AgentButton = ({ agentList, map }: { agentList: Agent[], map: Map }) => {
-    const [selectedAgent, setSelectedAgent] = useState<string>("");
+    const [selectedAgent, setSelectedAgent] = useState<Agent>({
+        agentID: "",
+        agentImage: "",
+        agentName: "",
+        agentRole: "",
+        agentRoleIcon: ""
+    });
 
-    const handleChange = (event: SelectChangeEvent) => {
+    const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
     };
 
     // let index = mapList.map(function(e){ return e.name; }).indexOf("Breeze");
 
     return (
-        <Box sx={{ minWidth: 75 }} >
-            <FormControl sx={{ minWidth: 30 }} size="medium">
+        <Box>
+            <FormControl className="agent-selected" style={{
+                backgroundImage: `url(${selectedAgent.agentImage})`
+            }}>
                 <Select
                     autoWidth
+                    inputProps={{ sx: { padding: 3.3 } }}
                     IconComponent={() => null}
                     className="agent-button"
-                    inputProps={{ sx: { padding: 0 } }}
-                    value={selectedAgent}
+                    value=""
                     onChange={handleChange}
                 >
-                    {agentList.map(agent => (<MenuItem key={agent.agentID} value={agent.agentImage}><img className="agent-in-list" src={agent.agentImage} /></MenuItem>))}
+                    {agentList.map(agent => (<MenuItem key={agent.agentID} value={agent as any}>{agent.agentName}</MenuItem>))}
                 </Select>
             </FormControl>
         </Box >
