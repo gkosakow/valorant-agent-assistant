@@ -1,12 +1,21 @@
-function SignOut() {
+import { auth } from "../../firebase/firebase";
+import { signOut } from "firebase/auth";
+import { Button } from "@mui/material";
+
+function SignOut({ setIsAuthenticated }: { setIsAuthenticated: any }) {
     const logout = () => {
-        localStorage.clear();
-        window.location.reload();
+        signOut(auth)
+            .then(() => {
+                localStorage.clear();
+                setIsAuthenticated(false);
+                window.location.reload();
+            }
+            )
     }
 
     return (
         <>
-            <button onClick={logout}>Logout</button>
+            <Button onClick={logout} variant="outlined">Logout</Button>
         </>
     )
 }

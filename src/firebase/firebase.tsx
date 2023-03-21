@@ -25,7 +25,7 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider;
 
-export {auth, provider};
+export {db, auth, provider};
 
 // const loginEmailPassword = async () => {
 //     const loginEmail = txtEmail.value;

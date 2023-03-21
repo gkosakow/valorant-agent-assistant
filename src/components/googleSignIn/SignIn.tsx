@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
 import { auth, provider } from '../../firebase/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { Button } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
 
-function SignIn() {
-    const [value, setValue] = useState<any>('');
+function SignIn({ setIsAuthenticated }: { setIsAuthenticated: any }) {
+    const [loggedInEmail, setLoggedInEmail] = useState<string | null>('');
 
     const handleClick = () => {
         signInWithPopup(auth, provider)
             .then((data: any) => {
-                console.log(data);
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential: any | null = GoogleAuthProvider.credentialFromResult(data);
                 const token = credential.accessToken;
+
                 // The signed-in user info.
                 const user = data.user;
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-                setValue(data.user.email);
+
+                console.log("User data:", user);
                 localStorage.setItem("email", data.user.email);
+                setIsAuthenticated(true);
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -29,12 +31,12 @@ function SignIn() {
     }
 
     useEffect(() => {
-        setValue(localStorage.getItem("email"));
+        setLoggedInEmail(localStorage.getItem("email"));
     })
 
     return (
         <>
-            <button onClick={handleClick}>Sign in with Google</button>
+            <Button onClick={handleClick} variant="contained" endIcon={<GoogleIcon />}>Sign in with Google</Button>
         </>
     )
 }
