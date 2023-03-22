@@ -165,3 +165,8 @@ body{
   background-position: center;
   background-size: cover;
 }
+
+.user-auth {
+  display: flex;
+  justify-content: center;
+}

@@ -13,7 +13,9 @@ const Sidebar = () => {
 				<Players />
 			</Box>
 			<Box className="credits">
-				<UserAuthentication />
+				<div className="user-auth">
+					<UserAuthentication />
+				</div>
 				<Credits />
 			</Box>
 		</Box>

@@ -7,7 +7,7 @@ function UserAuthentication() {
 
     return (
         <div>
-            {isAuthenticated || localStorage.getItem("email") ? <>Currently logged in as: {localStorage.getItem("email")} <SignOut setIsAuthenticated={setIsAuthenticated} /></> : <SignIn setIsAuthenticated={setIsAuthenticated} />}
+            {isAuthenticated || localStorage.getItem("email") ? <><SignOut setIsAuthenticated={setIsAuthenticated} /></> : <SignIn setIsAuthenticated={setIsAuthenticated} />}
         </div>
     )
 }
