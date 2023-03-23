@@ -13,6 +13,7 @@ export interface Agent {
 
 const Agents = ({ map }: { map: Map }) => {
 	const [agentList, setAgentList] = useState<Agent[]>([]);
+	// const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	// function to use agents valorant API to update dynamically with every new agent
 	useEffect(() => {
