@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import { Agent } from './Agents';
 import { Map } from './Maps';
 
-const AgentButton = ({ agentList, map }: { agentList: Agent[], map: Map }) => {
+const AgentButton = ({ key, agentList, map }: { key: number, agentList: Agent[], map: Map }) => {
     const [selectedAgent, setSelectedAgent] = useState<Agent>({
         agentID: "",
         agentImage: "",
@@ -17,9 +17,8 @@ const AgentButton = ({ agentList, map }: { agentList: Agent[], map: Map }) => {
 
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
-    };
 
-    // let index = mapList.map(function(e){ return e.name; }).indexOf("Breeze");
+    };
 
     return (
         <Box>

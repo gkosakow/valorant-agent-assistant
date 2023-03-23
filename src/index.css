@@ -132,11 +132,10 @@ body{
 .agent-button-row {
   display: flex;
   justify-content: space-between;
-  text-align: center;
   height: 75px;
-  padding-top: 2rem;
-  padding-left: 5%;
-  padding-right: 5%;
+  margin-top: 2rem;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .agent-button {
@@ -144,15 +143,7 @@ body{
   height: 75px;
 }
 
-.agent-in-list {
-  width: 75px;
-  height: 75px;
-  vertical-align: middle;
-}
-
 .agent-selected {
-  width: 75px;
-  height: 75px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -46,11 +46,11 @@ const Agents = ({ map }: { map: Map }) => {
 
 	return (
 		<div className="agent-button-row">
-			<AgentButton agentList={agentList} map={map} />
-			<AgentButton agentList={agentList} map={map} />
-			<AgentButton agentList={agentList} map={map} />
-			<AgentButton agentList={agentList} map={map} />
-			<AgentButton agentList={agentList} map={map} />
+			<AgentButton key={1} agentList={agentList} map={map} />
+			<AgentButton key={2} agentList={agentList} map={map} />
+			<AgentButton key={3} agentList={agentList} map={map} />
+			<AgentButton key={4} agentList={agentList} map={map} />
+			<AgentButton key={5} agentList={agentList} map={map} />
 		</div>
 	)
 }
