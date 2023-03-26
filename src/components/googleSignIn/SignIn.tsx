@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
 import { auth, provider } from '../../firebase/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 
-function SignIn({ setIsAuthenticated }: { setIsAuthenticated: any }) {
-    const [loggedInEmail, setLoggedInEmail] = useState<string | null>('');
+function SignIn() {
 
     const handleClick = () => {
         signInWithPopup(auth, provider)
@@ -14,12 +12,9 @@ function SignIn({ setIsAuthenticated }: { setIsAuthenticated: any }) {
                 const credential: any | null = GoogleAuthProvider.credentialFromResult(data);
                 const token = credential.accessToken;
 
-                // The signed-in user info.
-                const user = data.user;
+                // DEBUGGING when user is signing in.
+                console.log("Signing in");
 
-                console.log("User data:", user);
-                localStorage.setItem("email", data.user.email);
-                setIsAuthenticated(true);
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -30,14 +25,10 @@ function SignIn({ setIsAuthenticated }: { setIsAuthenticated: any }) {
             });
     }
 
-    useEffect(() => {
-        setLoggedInEmail(localStorage.getItem("email"));
-    })
-
     return (
-        <>
+        <div>
             <Button onClick={handleClick} variant="contained" endIcon={<GoogleIcon />}>Sign in with Google</Button>
-        </>
+        </div>
     )
 }
 
