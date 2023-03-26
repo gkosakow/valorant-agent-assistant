@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Card, Stack, OutlinedInput, Divider } from "@mui/material";
+import { Button, Card, Stack, OutlinedInput, Divider } from "@mui/material";
 import InputAdornment from '@mui/material/InputAdornment';
+import { width } from "@mui/system";
+import TagIcon from '@mui/icons-material/Tag';
 interface Player {
 	playerNum: number,
 	riotID: string,
@@ -8,6 +10,7 @@ interface Player {
 }
 
 const Players = () => {
+	const [editing, setEditing] = useState<boolean>(false);
 	const [players, setPlayers] = useState<Player[]>([
 		{ playerNum: 1, riotID: "Player 1", tagline: "" },
 		{ playerNum: 2, riotID: "Player 2", tagline: "" },
@@ -32,7 +35,7 @@ const Players = () => {
 
 	return (
 		<Card className="players" sx={{ borderRadius: 3 }} elevation={2} style={{ backgroundColor: "#1e2036" }}>
-			<p>TEAM ROSTER</p>
+			TEAM ROSTER
 			<Divider sx={{ marginTop: .75, marginBottom: 1 }} />
 			<Stack className="player-stack" spacing={2}>
 				{players.map(player => (
@@ -40,7 +43,7 @@ const Players = () => {
 						<OutlinedInput
 							className="player-name"
 							onChange={(e) => handleChangePlayerName(e.target.value, player.playerNum)}
-							placeholder={`Player ${player.playerNum}`}
+							placeholder={`PLAYER ${player.playerNum}`}
 							size="small"
 							autoComplete='off'
 							inputProps={{ maxLength: 16 }}
@@ -51,7 +54,8 @@ const Players = () => {
 							placeholder={`TAG`}
 							size="small"
 							autoComplete='off'
-							inputProps={{ startAdornment: <InputAdornment position="start">#</InputAdornment>, maxLength: 5 }}
+							inputProps={{ maxLength: 5 }}
+							startAdornment={<InputAdornment sx={{ padding: 0 }} position="start">#</InputAdornment>}
 						/>
 					</div>
 				))}

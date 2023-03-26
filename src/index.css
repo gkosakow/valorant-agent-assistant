@@ -6,7 +6,6 @@
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  
   color-scheme: light dark;
   background-color: black;
   color: rgba(255, 255, 255, 0.87);
@@ -40,7 +39,7 @@ body{
   position: relative;
   background-color: #181a2d;
   height: 100vh;
-  width: 20%;
+  width: 27%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -163,4 +162,12 @@ body{
 .player-row {
   display: flex;
   height: 35px
+}
+
+.player-name {
+  width: 70%
+}
+
+.player-tagline {
+  width: 30%;
 }
