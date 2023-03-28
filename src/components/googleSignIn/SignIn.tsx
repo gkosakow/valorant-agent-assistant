@@ -13,6 +13,8 @@ function SignIn() {
                 const token = credential.accessToken;
                 // DEBUGGING when user is signing in.
                 console.log("Signing in");
+                sessionStorage.setItem("authenticated", "true");
+                window.location.reload();
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;

@@ -8,6 +8,8 @@ function SignOut() {
         signOut(auth)
             .then(() => {
                 console.log("Signing out");
+                sessionStorage.removeItem("authenticated");
+                window.location.reload();
             }
             )
     }
