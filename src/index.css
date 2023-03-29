@@ -102,11 +102,12 @@ body{
 
 .map-card-contents{
   padding: 1.1rem;
-  padding-left: 1.6rem;
+  padding-left: 1.1rem;
 }
 
 .map-card-text {
   text-shadow: 1px 1px 30px black;
+  padding-left: .6rem;
 }
 
 .map-card-text h1 {

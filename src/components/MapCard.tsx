@@ -6,13 +6,13 @@ import { Map } from "./Maps";
 const MapCard = ({ map }: { map: Map }) => {
     return (
         <Card className="map-card" elevation={3} sx={{ borderRadius: 3 }} style={{
-            backgroundImage: `url(${map.mapImage})`
+            backgroundImage: `url(${map.image})`
         }}>
             <div className="map-card-gradient" />
             <div className="map-card-contents">
                 <div className="map-card-text" >
-                    <h1>{map.mapName.toUpperCase()}</h1>
-                    <p>{map.mapCoords.split("").join(" ")}</p>
+                    <h1>{map.name.toUpperCase()}</h1>
+                    <p>{map.coords.split("").join(" ")}</p>
                 </div>
                 <div className="map-card-agents">
                     <Agents map={map} />

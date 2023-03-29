@@ -4,11 +4,11 @@ import { Map } from "./Maps";
 
 // defining the Agent interface to store the agent ID, name, image, and role
 export interface Agent {
-	agentID: string,
-	agentName: string,
-	agentImage: string,
-	agentRole: string,
-	agentRoleIcon: string
+	id: string,
+	name: string,
+	image: string,
+	role: string,
+	roleIcon: string
 }
 
 const Agents = ({ map }: { map: Map }) => {
@@ -27,12 +27,12 @@ const Agents = ({ map }: { map: Map }) => {
 			// fills the agents array with responses from agents API besides The Range
 			agentData.data.map((agent: any) => {
 				if (agent.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
-					updatedAgentList.push({ agentID: agent.uuid, agentName: agent.displayName, agentImage: agent.displayIcon, agentRole: agent.role.displayName, agentRoleIcon: agent.role.displayIcon });
+					updatedAgentList.push({ id: agent.uuid, name: agent.displayName, image: agent.displayIcon, role: agent.role.displayName, roleIcon: agent.role.displayIcon });
 				}
 			})
 
 			// sorts agents array alphabetically
-			updatedAgentList.sort((a, b) => a.agentName.localeCompare(b.agentName))
+			updatedAgentList.sort((a, b) => a.name.localeCompare(b.name))
 
 			// setting agentList to updatedAgentList
 			setAgentList(updatedAgentList);

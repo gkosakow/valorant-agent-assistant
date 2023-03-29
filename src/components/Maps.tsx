@@ -1,13 +1,25 @@
 import { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
+import { auth, db } from '../firebase/firebase';
+import { doc, setDoc } from "firebase/firestore";
 import MapCard from "./MapCard";
 
-// defining the Map interface to store the map ID, name, and splash image
+// defining the Map interface to store the map id, name, and splash image
 export interface Map {
-	mapID: string,
-	mapName: string,
-	mapImage: string,
-	mapCoords: string
+	id: string,
+	name: string,
+	image: string,
+	coords: string
+}
+
+const setFirebaseMaps = async (user: any, map: string) => {
+	await setDoc(doc(db, "Users", `${user.uid}`, "Maps", `${map}`), {
+		agent1: "",
+		agent2: "",
+		agent3: "",
+		agent4: "",
+		agent5: ""
+	});
 }
 
 const Maps = () => {
@@ -25,12 +37,12 @@ const Maps = () => {
 			// fills the maps array with responses from maps API besides The Range
 			mapData.data.map((map: any) => {
 				if (map.displayName !== "The Range") {
-					updatedMapList.push({ mapID: map.uuid, mapName: map.displayName, mapImage: map.splash, mapCoords: map.coordinates });
+					updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
 				}
 			})
 
 			// sorts maps array alphabetically
-			updatedMapList.sort((a, b) => a.mapName.localeCompare(b.mapName))
+			updatedMapList.sort((a, b) => a.name.localeCompare(b.name))
 
 			// setting mapList to updatedMapList
 			setMapList(updatedMapList);
@@ -46,7 +58,7 @@ const Maps = () => {
 		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">
 			<Grid container>
 				{mapList.map(map => (
-					<Grid item xs={12} md={12} lg={6} key={map.mapID}>
+					<Grid item xs={12} md={12} lg={6} key={map.id}>
 						<MapCard map={map} />
 					</Grid>
 				))}
