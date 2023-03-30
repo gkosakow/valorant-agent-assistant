@@ -5,27 +5,33 @@ import { doc, setDoc } from "firebase/firestore";
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 
-const checkIfNewUser = (user: any) => {
+export const getCurrentUser = () => {
+    const user = auth.currentUser;
+    return user;
+}
+
+export const checkIfNewUser = (user: any) => {
     if (user.metadata.creationTime === user.metadata.lastSignInTime) {
         // This is a new user, show welcome modal.
         console.log("NEW USER");
         console.log(user);
 
-        // Initializes firestore db with user information
-        createUser(user);
+        // Initializes Firestore db with user information
+        createUserCollection(user);
     } else {
         // This is an existing user.
         console.log("EXISTING USER");
     }
 }
-const createUser = async (user: any) => {
+const createUserCollection = async (user: any) => {
     const docRef = doc(db, "Users", user.uid);
 
     await setDoc(docRef, {
         uid: user.uid,
         displayName: user.displayName,
         email: user.email,
-        photoURL: user.photoURL
+        photoURL: user.photoURL,
+        created: user.metadata.creationTime
     })
 }
 
@@ -33,24 +39,20 @@ function UserAuthentication() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
     // Checks to see if a user is logged in and updates the login/logout buttons.
-    let authFlag = true;
     useEffect(() => {
         onAuthStateChanged(auth, (user: any) => {
-            if (authFlag) {
-                authFlag = false;
-                // setUserData({id: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL});
-                if (user) {
-                    // User is signed in
-                    setIsAuthenticated(true);
-                    sessionStorage.setItem("authenticated", "true");
-                    console.log("authenticated");
-                    checkIfNewUser(user);
-                } else {
-                    // User is signed out
-                    console.log("de-authenticated");
-                    sessionStorage.removeItem("authenticated");
-                    setIsAuthenticated(false);
-                }
+            // setUserData({id: user.uid, displayName: user.displayName, email: user.email, photoURL: user.photoURL});
+            if (user) {
+                // User is signed in
+                setIsAuthenticated(true);
+                sessionStorage.setItem("authenticated", "true");
+                console.log("authenticated");
+                checkIfNewUser(user);
+            } else {
+                // User is signed out
+                console.log("de-authenticated");
+                sessionStorage.removeItem("authenticated");
+                setIsAuthenticated(false);
             }
         });
     }, [])

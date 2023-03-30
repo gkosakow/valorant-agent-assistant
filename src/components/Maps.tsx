@@ -3,6 +3,7 @@ import { Box, Grid } from "@mui/material";
 import { auth, db } from '../firebase/firebase';
 import { doc, setDoc } from "firebase/firestore";
 import MapCard from "./MapCard";
+import { getCurrentUser } from "./googleSignIn/UserAuthentication";
 
 // defining the Map interface to store the map id, name, and splash image
 export interface Map {
@@ -12,8 +13,8 @@ export interface Map {
 	coords: string
 }
 
-const setFirebaseMaps = async (user: any, map: string) => {
-	await setDoc(doc(db, "Users", `${user.uid}`, "Maps", `${map}`), {
+const setFirebaseMap = async (user: any, map: Map) => {
+	await setDoc(doc(db, "Users", `${user.uid}`, "Maps", `${map.name}`), {
 		agent1: "",
 		agent2: "",
 		agent3: "",
@@ -27,31 +28,56 @@ const Maps = () => {
 
 	// function to use maps valorant API to update dynamically with every new map
 	useEffect(() => {
-		async function retrieveMaps() {
-			const mapURL = "https://valorant-api.com/v1/maps"
-			const response = await fetch(mapURL);
-			const mapData = await response.json();
+		const mapURL = "https://valorant-api.com/v1/maps"
 
-			let updatedMapList: Map[] = []
+		fetch(mapURL)
+			.then((response: any) => response.json())
 
-			// fills the maps array with responses from maps API besides The Range
-			mapData.data.map((map: any) => {
-				if (map.displayName !== "The Range") {
-					updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
-				}
+			.then((data: any) => {
+				const user = auth.currentUser;
+
+				// setting mapData to the map array within the data payload
+				const mapData = data.data;
+
+				let updatedMapList: Map[] = [];
+
+				// fills the maps array with responses from maps API besides The Range
+				mapData.map((map: any) => {
+					if (map.displayName !== "The Range") {
+						updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
+					}
+				})
+
+				// sorts maps array alphabetically
+				updatedMapList.sort((a, b) => a.name.localeCompare(b.name))
+
+				// setting mapList to updatedMapList
+
+				console.log(updatedMapList);
+				setMapList(updatedMapList);
+
+				return updatedMapList;
+
+				// if(isAuthenticated){
+				// 	updatedMapList.map((map: Map) => {
+				// 		setFirebaseMap(auth.currentUser, map);
+				// 		console.log(map.name);
+				// 	})
+				// }
 			})
 
-			// sorts maps array alphabetically
-			updatedMapList.sort((a, b) => a.name.localeCompare(b.name))
+			.then((updatedMapList) => {
+				updatedMapList.map((map: Map) => {
+					setFirebaseMap(auth.currentUser, map);
+					console.log(map.name);
+				})
+			})
 
-			// setting mapList to updatedMapList
-			setMapList(updatedMapList);
-		};
+			.catch((error: any) => {
+				// error handling to console
+				console.error("Map API error!", error);
+			});
 
-		// error handling to console
-		retrieveMaps().catch(error => {
-			console.error("Map API error!", error);
-		});
 	}, []);
 
 	return (

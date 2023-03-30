@@ -21,11 +21,6 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
         roleIcon: ""
     });
 
-    // const setAgent = async () => {
-    //     const userIDRef = db.collection('users').doc(user.uid)
-    //     console.log(userIDRef);
-    // }
-
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
 
