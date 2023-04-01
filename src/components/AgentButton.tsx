@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { auth, db } from '../firebase/firebase'
-import { doc, setDoc } from 'firebase/firestore';
+import { auth } from '../firebase/firebase'
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';

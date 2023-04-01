@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Box, Grid } from "@mui/material";
-import { auth, db } from '../firebase/firebase';
-import { doc, setDoc } from "firebase/firestore";
+import { auth } from '../firebase/firebase';
+import { UserAuthContext } from "../App";
+import { isNewUser } from "../firebase/isNewUser";
+import { addMapToFirestore } from "../firebase/addMapToFirestore";
 import MapCard from "./MapCard";
-import { getCurrentUser } from "./googleSignIn/UserAuthentication";
 
 // defining the Map interface to store the map id, name, and splash image
 export interface Map {
@@ -13,18 +14,9 @@ export interface Map {
 	coords: string
 }
 
-const setFirebaseMap = async (user: any, map: Map) => {
-	await setDoc(doc(db, "Users", `${user.uid}`, "Maps", `${map.name}`), {
-		agent1: "",
-		agent2: "",
-		agent3: "",
-		agent4: "",
-		agent5: ""
-	});
-}
-
 const Maps = () => {
 	const [mapList, setMapList] = useState<Map[]>([]);
+	const [isAuthenticated] = useContext(UserAuthContext);
 
 	// function to use maps valorant API to update dynamically with every new map
 	useEffect(() => {
@@ -34,14 +26,12 @@ const Maps = () => {
 			.then((response: any) => response.json())
 
 			.then((data: any) => {
-				const user = auth.currentUser;
+				let updatedMapList: Map[] = [];
 
 				// setting mapData to the map array within the data payload
 				const mapData = data.data;
 
-				let updatedMapList: Map[] = [];
-
-				// fills the maps array with responses from maps API besides The Range
+				// fills the maps array with responses from maps API besides "The Range"
 				mapData.map((map: any) => {
 					if (map.displayName !== "The Range") {
 						updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
@@ -52,33 +42,23 @@ const Maps = () => {
 				updatedMapList.sort((a, b) => a.name.localeCompare(b.name))
 
 				// setting mapList to updatedMapList
-
-				console.log(updatedMapList);
 				setMapList(updatedMapList);
-
-				return updatedMapList;
-
-				// if(isAuthenticated){
-				// 	updatedMapList.map((map: Map) => {
-				// 		setFirebaseMap(auth.currentUser, map);
-				// 		console.log(map.name);
-				// 	})
-				// }
-			})
-
-			.then((updatedMapList) => {
-				updatedMapList.map((map: Map) => {
-					setFirebaseMap(auth.currentUser, map);
-					console.log(map.name);
-				})
 			})
 
 			.catch((error: any) => {
 				// error handling to console
 				console.error("Map API error!", error);
 			});
-
 	}, []);
+
+	useEffect(() => {
+		if (isAuthenticated && isNewUser(auth.currentUser)) {
+			console.log("Adding maps for the first time");
+			mapList.map((map: Map) => {
+				addMapToFirestore(auth.currentUser, map);
+			})
+		}
+	}, [isAuthenticated]);
 
 	return (
 		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">

@@ -10,7 +10,6 @@ interface Player {
 }
 
 const Players = () => {
-	const [editing, setEditing] = useState<boolean>(false);
 	const [players, setPlayers] = useState<Player[]>([
 		{ playerNum: 1, riotID: "Player 1", tagline: "" },
 		{ playerNum: 2, riotID: "Player 2", tagline: "" },

@@ -1,10 +1,9 @@
-import { auth, db, provider } from '../../firebase/firebase';
+import { auth, provider } from '../../firebase/firebase';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 
 function SignIn() {
-
     const handleClick = () => {
         signInWithPopup(auth, provider)
             .then((data: any) => {
@@ -14,8 +13,8 @@ function SignIn() {
                 // DEBUGGING when user is signing in.
                 console.log("Signing in");
                 sessionStorage.setItem("authenticated", "true");
-                window.location.reload();
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;

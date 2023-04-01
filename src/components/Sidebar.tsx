@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Players from "./Players";
 import Credits from "./Credits";
-import UserAuthentication from "./googleSignIn/UserAuthentication";
+import UserAuthentication from "./authentication/UserAuthentication";
 
 const Sidebar = () => {
 	return (
