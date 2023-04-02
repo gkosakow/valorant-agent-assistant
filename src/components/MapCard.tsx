@@ -1,6 +1,6 @@
 import Card from "@mui/material/Card";
-import Agents from "./Agents";
-import { Map } from "./Maps";
+import AgentsRow from "./AgentsRow";
+import { Map } from "./MapsPanel";
 
 // creating a card for a specific map, uses interface Map
 const MapCard = ({ map }: { map: Map }) => {
@@ -15,7 +15,7 @@ const MapCard = ({ map }: { map: Map }) => {
                     <p>{map.coords.split("").join(" ")}</p>
                 </div>
                 <div className="map-card-agents">
-                    <Agents map={map} />
+                    <AgentsRow map={map} />
                 </div>
             </div>
         </Card >

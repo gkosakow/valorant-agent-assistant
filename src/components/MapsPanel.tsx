@@ -5,6 +5,7 @@ import { UserAuthContext } from "../App";
 import { isNewUser } from "../firebase/isNewUser";
 import { addMapToFirestore } from "../firebase/addMapToFirestore";
 import MapCard from "./MapCard";
+import { retrieveMaps } from "../api/MapsAPI";
 
 // defining the Map interface to store the map id, name, and splash image
 export interface Map {
@@ -14,42 +15,17 @@ export interface Map {
 	coords: string
 }
 
-const Maps = () => {
-	const [mapList, setMapList] = useState<Map[]>([]);
+const MapsPanel = () => {
 	const [isAuthenticated] = useContext(UserAuthContext);
+	const [mapList, setMapList] = useState<Map[]>([]);
 
 	// function to use maps valorant API to update dynamically with every new map
 	useEffect(() => {
-		const mapURL = "https://valorant-api.com/v1/maps"
-
-		fetch(mapURL)
-			.then((response: any) => response.json())
-
-			.then((data: any) => {
-				let updatedMapList: Map[] = [];
-
-				// setting mapData to the map array within the data payload
-				const mapData = data.data;
-
-				// fills the maps array with responses from maps API besides "The Range"
-				mapData.map((map: any) => {
-					if (map.displayName !== "The Range") {
-						updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
-					}
-				})
-
-				// sorts maps array alphabetically
-				updatedMapList.sort((a, b) => a.name.localeCompare(b.name))
-
-				// setting mapList to updatedMapList
-				setMapList(updatedMapList);
-			})
-
-			.catch((error: any) => {
-				// error handling to console
-				console.error("Map API error!", error);
-			});
+		retrieveMaps().then((response: any) => {
+			setMapList(response);
+		});
 	}, []);
+
 
 	useEffect(() => {
 		if (isAuthenticated && isNewUser(auth.currentUser)) {
@@ -73,4 +49,4 @@ const Maps = () => {
 	)
 }
 
-export default Maps;
+export default MapsPanel;

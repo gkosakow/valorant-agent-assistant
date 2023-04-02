@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 import "./assets/fonts/Tungsten-Bold/Tungsten-Bold.ttf";
 import { Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Maps from './components/Maps';
+import MapsPanel from './components/MapsPanel';
 import Sidebar from './components/Sidebar';
 
 const darkTheme = createTheme({
@@ -24,7 +24,7 @@ function App() {
 				<Box className="app">
 					<Sidebar />
 					<Box className="app-content">
-						<Maps />
+						<MapsPanel />
 					</Box>
 				</Box >
 			</UserAuthContext.Provider>

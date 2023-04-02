@@ -3,7 +3,6 @@ import { signOut } from "firebase/auth";
 import { Button } from "@mui/material";
 
 function SignOut() {
-
     const logout = () => {
         signOut(auth)
             .then(() => {

@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Agent } from './Agents';
-import { Map } from './Maps';
+import { Agent } from './AgentsRow';
+import { Map } from './MapsPanel';
 
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
     const user = auth.currentUser;
@@ -22,7 +22,6 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
 
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
-
     };
 
     return (
