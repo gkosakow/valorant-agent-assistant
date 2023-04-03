@@ -10,7 +10,12 @@ import { Map } from './MapsPanel';
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
     const user = auth.currentUser;
 
-    //setSelectedAgent(agentList.find("Viper")
+    // Preparing to grab Agent object from the list given an ID or name
+    // const getAgentObject = (agentName: string) => {
+    //     let result = agentList.filter(agent => {
+    //         return agent.name === agentName;
+    //     })
+    // }
 
     const [selectedAgent, setSelectedAgent] = useState<Agent>({
         id: "",
