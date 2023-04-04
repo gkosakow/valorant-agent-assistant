@@ -31,9 +31,13 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
 
     return (
         <Box>
-            <FormControl className="agent-selected" style={{
-                backgroundImage: `url(${selectedAgent.image})`
-            }}>
+            <FormControl className="agent-selected" >
+                {selectedAgent.id &&
+                    <div>
+                        <img className="agent-background" src={selectedAgent.image} />
+                        <img className="agent-role" src={selectedAgent.roleIcon} />
+                    </div>
+                }
                 <Select
                     autoWidth
                     inputProps={{ sx: { padding: 3.3 } }}
