@@ -3,7 +3,6 @@ import { Box, Grid } from "@mui/material";
 import { auth } from '../firebase/firebase';
 import { UserAuthContext } from "../App";
 import { isNewUser } from "../firebase/isNewUser";
-import { addMapToFirestore } from "../firebase/addMapToFirestore";
 import MapCard from "./MapCard";
 import { retrieveMaps } from "../api/MapsAPI";
 
@@ -25,16 +24,6 @@ const MapsPanel = () => {
 			setMapList(response);
 		});
 	}, []);
-
-
-	useEffect(() => {
-		if (isAuthenticated && isNewUser(auth.currentUser)) {
-			console.log("Adding maps for the first time");
-			mapList.map((map: Map) => {
-				addMapToFirestore(auth.currentUser, map);
-			})
-		}
-	}, [isAuthenticated]);
 
 	return (
 		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">
