@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase'
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,16 +6,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Agent } from './AgentsRow';
 import { Map } from './MapsPanel';
+import { saveAgentToFirestore } from '../firebase/saveAgentToFirestore';
+import { loadAgentFromFirestore } from '../firebase/loadAgentFromFirestore';
 
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
     const user = auth.currentUser;
-
-    // Preparing to grab Agent object from the list given an ID or name
-    // const getAgentObject = (agentName: string) => {
-    //     let result = agentList.filter(agent => {
-    //         return agent.name === agentName;
-    //     })
-    // }
 
     const [selectedAgent, setSelectedAgent] = useState<Agent>({
         id: "",
@@ -25,8 +20,23 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
         roleIcon: ""
     });
 
+    useEffect(() => {
+        let temp = loadAgentFromFirestore(auth.currentUser, num, map, selectedAgent);
+        console.log(temp)
+    }, [])
+
+    // Preparing to grab Agent object from the list given an ID or name
+    // const getAgentObject = (agentName: string) => {
+    //     let result = agentList.filter(agent => {
+    //         return agent.name === agentName;
+    //     })
+    // }
+
+
+
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
+        saveAgentToFirestore(auth.currentUser, num, map, event.target.value);
     };
 
     return (
