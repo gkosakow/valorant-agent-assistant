@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { auth } from '../firebase/firebase'
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { db } from '../firebase/firebase';
+import { doc, onSnapshot } from "firebase/firestore";
+import { Select, FormControl, MenuItem, Box } from '@mui/material';
 import { Agent } from './AgentsRow';
 import { Map } from './MapsPanel';
-import { saveAgentToFirestore } from '../firebase/saveAgentToFirestore';
-import { loadAgentFromFirestore } from '../firebase/loadAgentFromFirestore';
+import { saveAgentToFirestore } from '../utilities/saveAgentToFirestore';
+import { UserAuthContext } from "../App";
+import { getAgentObject } from '../utilities/agentNametoObj';
 
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
+    const [isAuthenticated] = useContext(UserAuthContext);
     const user = auth.currentUser;
 
     const [selectedAgent, setSelectedAgent] = useState<Agent>({
@@ -20,24 +21,36 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
         roleIcon: ""
     });
 
-    useEffect(() => {
-        let temp = loadAgentFromFirestore(auth.currentUser, num, map, selectedAgent);
-        console.log(temp)
-    }, [])
-
-    // Preparing to grab Agent object from the list given an ID or name
-    // const getAgentObject = (agentName: string) => {
-    //     let result = agentList.filter(agent => {
-    //         return agent.name === agentName;
-    //     })
-    // }
-
-
-
+    // handling the select change and saving the selectedAgent into the Firestore DB
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
-        saveAgentToFirestore(auth.currentUser, num, map, event.target.value);
+        if (isAuthenticated) {
+            saveAgentToFirestore(auth.currentUser, num, map, event.target.value);
+        }
     };
+
+    // takes agents from Firestore DB and loads them into state variables
+    const loadAgentFromFirestore = (user: any, agentNum: number, map: Map) => {
+
+        // referencing map within Maps collection inside of the users unique storage
+        const docRef = doc(db, "Users", `${user.uid}`, "Maps", `${map.name}`);
+
+        // allows for real time data updates when using this listener
+        onSnapshot(docRef, (doc) => {
+            // check if agentName inside DB exists, if so, change it
+            let loadedAgentName = doc.get(`agent${agentNum}`);
+            if (loadedAgentName) {
+                setSelectedAgent(getAgentObject(agentList, loadedAgentName));
+            }
+        });
+    }
+
+    // calling loadAgentFromFirestore on every change of isAuthenticated
+    useEffect(() => {
+        if (isAuthenticated) {
+            loadAgentFromFirestore(user, num, map);
+        }
+    }, [isAuthenticated])
 
     return (
         <Box>
