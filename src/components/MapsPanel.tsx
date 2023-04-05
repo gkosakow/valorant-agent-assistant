@@ -1,8 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
-import { auth } from '../firebase/firebase';
-import { UserAuthContext } from "../App";
-import { isNewUser } from "../firebase/isNewUser";
 import MapCard from "./MapCard";
 import { retrieveMaps } from "../api/MapsAPI";
 
@@ -15,7 +12,6 @@ export interface Map {
 }
 
 const MapsPanel = () => {
-	const [isAuthenticated] = useContext(UserAuthContext);
 	const [mapList, setMapList] = useState<Map[]>([]);
 
 	// function to use maps valorant API to update dynamically with every new map
