@@ -16,8 +16,6 @@ export const UserAuthContext = createContext<any>(null);
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-	console.log("isAuth from App.tsx:", isAuthenticated);
-
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<UserAuthContext.Provider value={[isAuthenticated, setIsAuthenticated]}>
