@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Button, Card, Stack, OutlinedInput, Divider } from "@mui/material";
+import { Card, Stack, OutlinedInput, Divider } from "@mui/material";
 import InputAdornment from '@mui/material/InputAdornment';
-import { width } from "@mui/system";
-import TagIcon from '@mui/icons-material/Tag';
 interface Player {
 	playerNum: number,
 	riotID: string,
