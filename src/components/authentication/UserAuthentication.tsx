@@ -2,8 +2,8 @@ import { useEffect, useContext } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../../firebase/firebase';
 import { UserAuthContext } from '../../App';
-import { isNewUser } from '../../firebase/isNewUser';
-import { addUserDataToFirestore } from '../../firebase/addUserDataToFirestore';
+import { isNewUser } from '../../utilities/isNewUser';
+import { addUserDataToFirestore } from '../../utilities/addUserDataToFirestore';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 
@@ -17,7 +17,7 @@ function UserAuthentication() {
                 // User is signed in
                 setIsAuthenticated(true);
                 sessionStorage.setItem("authenticated", "true");
-                console.log("SIGNED IN");
+                console.log("SIGNED IN:", user);
 
                 // Initializes Firestore db with user information if first time login
                 if (isNewUser(user)) {
