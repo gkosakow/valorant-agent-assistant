@@ -6,7 +6,7 @@ import { Select, FormControl, MenuItem, Box } from '@mui/material';
 import { Agent } from './AgentsRow';
 import { Map } from './MapsPanel';
 import { saveAgentToFirestore } from '../utilities/saveAgentToFirestore';
-import { UserAuthContext } from "../App";
+import { UserAuthContext } from '../App';
 import { getAgentObject } from '../utilities/agentNametoObj';
 
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
@@ -55,11 +55,13 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
     return (
         <Box>
             <FormControl className="agent-selected" >
-                {selectedAgent.id &&
+                {selectedAgent.id ?
                     <div>
                         <img className="agent-background" src={selectedAgent.image} />
                         <img className="agent-role" src={selectedAgent.roleIcon} />
                     </div>
+                    :
+                    null
                 }
                 <Select
                     autoWidth
