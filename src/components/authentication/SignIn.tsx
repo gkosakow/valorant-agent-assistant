@@ -22,7 +22,7 @@ function SignIn() {
 
     return (
         <div>
-            <Button onClick={handleClick} variant="contained" endIcon={<GoogleIcon />}>Sign in with Google</Button>
+            <Button onClick={handleClick} variant="contained" startIcon={<GoogleIcon />}>Sign in with Google</Button>
         </div>
     )
 }

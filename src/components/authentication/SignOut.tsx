@@ -1,6 +1,7 @@
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
 import { Button } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function SignOut() {
 
@@ -17,7 +18,7 @@ function SignOut() {
 
     return (
         <>
-            <Button onClick={logout} variant="outlined">Logout</Button>
+            <Button onClick={logout} variant="outlined" startIcon={<LogoutIcon />}>Logout</Button>
         </>
     )
 }
