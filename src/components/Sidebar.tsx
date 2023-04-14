@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Button, Popover } from "@mui/material";
 import Players from "./Players";
 import Credits from "./Credits";
 import UserAuthentication from "./authentication/UserAuthentication";
+import TeamPopover from "./TeamPopover";
 
 const Sidebar = () => {
 	return (
@@ -9,13 +10,11 @@ const Sidebar = () => {
 			<Box className="logo">
 				<img src="./src/assets/images/valorant-logo.png" />
 			</Box>
-			<Box className="sidebar-content">
-				<Players />
-			</Box>
+			<div className="user-auth">
+				<TeamPopover />
+				<UserAuthentication />
+			</div>
 			<Box className="credits">
-				<div className="user-auth">
-					<UserAuthentication />
-				</div>
 				<Credits />
 			</Box>
 		</Box>
