@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Stack, OutlinedInput, Divider } from "@mui/material";
+import { Card, Stack, Input, Divider } from "@mui/material";
 import InputAdornment from '@mui/material/InputAdornment';
 interface Player {
 	playerNum: number,
@@ -19,40 +19,40 @@ const Players = () => {
 	const handleChangePlayerName = (e: string, playerNumSelected: number) => {
 		setPlayers(
 			players.map(player =>
-				player.playerNum === playerNumSelected ? { ...player, riotID: e } : player
-			))
+				player.playerNum === playerNumSelected ? { ...player, riotID: e } : player)
+		)
 	}
 
-	const handleChangePlayerTag = (e: string, playerNumSelected: number) => {
+	const handleChangePlayerTagline = (e: string, playerNumSelected: number) => {
 		setPlayers(
 			players.map(player =>
-				player.playerNum === playerNumSelected ? { ...player, tagline: e } : player
-			))
+				player.playerNum === playerNumSelected ? { ...player, tagline: e } : player)
+		)
 	}
 
 	return (
 		<Card className="players" sx={{ borderRadius: 3 }} elevation={2} style={{ backgroundColor: "#1e2036" }}>
-			TEAM ROSTER
-			<Divider sx={{ marginTop: .75, marginBottom: 1 }} />
 			<Stack className="player-stack" spacing={2}>
 				{players.map(player => (
 					<div className="player-row" key={player.playerNum}>
-						<OutlinedInput
+						<Input
 							className="player-name"
 							onChange={(e) => handleChangePlayerName(e.target.value, player.playerNum)}
+							disableUnderline
 							placeholder={`PLAYER ${player.playerNum}`}
 							size="small"
 							autoComplete='off'
-							inputProps={{ maxLength: 16 }}
+							inputProps={{ maxLength: 16, style: { padding: 0 } }}
 						/>
-						<OutlinedInput
+						<Input
 							className="player-tagline"
-							onChange={(e) => handleChangePlayerTag(e.target.value, player.playerNum)}
+							onChange={(e) => handleChangePlayerTagline(e.target.value, player.playerNum)}
+							disableUnderline
 							placeholder={`TAG`}
 							size="small"
 							autoComplete='off'
-							inputProps={{ maxLength: 5 }}
-							startAdornment={<InputAdornment sx={{ padding: 0 }} position="start">#</InputAdornment>}
+							inputProps={{ maxLength: 5, style: { padding: 0 } }}
+							startAdornment={<InputAdornment position="start">#</InputAdornment>}
 						/>
 					</div>
 				))}
