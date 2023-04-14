@@ -55,6 +55,7 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
     return (
         <Box>
             <FormControl className="agent-selected" >
+                <div className='agent-background-none'></div>
                 {selectedAgent.id ?
                     <div>
                         <img className="agent-background" src={selectedAgent.image} />
