@@ -66,7 +66,9 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
                 }
                 <Select
                     autoWidth
-                    inputProps={{ sx: { padding: 3.3 } }}
+                    inputProps={{
+                        sx: { padding: 3.3 }, MenuProps: { MenuListProps: { sx: { backgroundColor: '#2c2d48' } } },
+                    }}
                     IconComponent={() => null}
                     className="agent-button"
                     value=""
