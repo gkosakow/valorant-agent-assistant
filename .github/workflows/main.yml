@@ -1,0 +1,52 @@
+name: Testing file directory.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Testing_Directory:
+    runs-on: [ubuntu-latest]
+
+    steps:
+
+      - name: Print the GitHub context to console
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.1
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: test
+          aws-secret-access-key: test
+          aws-region: us-east-1
+          
+      - name: Check AWS credentials file in file directory
+      - run: |
+          cd ~
+          ls -a
+          cd .aws
+          ls -a
+          cat credentials
+        
+      - name: Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region $AWS_REGION
+          aws configure set output "text"
+        env:
+          AWS_ACCESS_KEY_ID: testaction
+          AWS_SECRET_ACCESS_KEY: testaction
+          AWS_REGION: us-east-1
+
+      - name: Check AWS credentials file in file directory
+        run: |
+          cd ~
+          ls -a
+          cd .aws
+          ls -a
+          cat credentials
