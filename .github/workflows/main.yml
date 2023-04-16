@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_development:
+  Testing_Directory:
     runs-on: [ubuntu-latest]
 
     steps:
@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.5.1
         
+      - name: Install AWS CLI
+        run: brew install awscli
+        
       - name: Configure AWS credentials
         run: aws configure set aws_access_key_id "$aws-access-key-id" && aws configure set aws_secret_access_key "$aws-secrect-access-key" && aws configure set region "us-east-1" && aws configure set output "text"
         env:
@@ -24,7 +27,7 @@ jobs:
           aws-secret-access-key: test
           aws-region: us-east-1
 
-      - name: Check AWS credentials file
+      - name: Check AWS credentials file in file directory
         run: |
           cd ~
           ls -a
