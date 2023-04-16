@@ -9,13 +9,21 @@ jobs:
 
     steps:
 
-      - name: Print the GitHub context to console
+      - name: Print the GitHub contexts to console
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          echo ${{ github.context }}
+          echo ${{ GITHUB_CONTEXT }}
+        
 
       - name: Checkout repository
         uses: actions/checkout@v3.5.1
+        
+      - name: Checking current working directory  
+        run: |
+          pwd
+          ls -a
         
       - name: Configure AWS credentials
         run: |
