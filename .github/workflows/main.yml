@@ -19,14 +19,14 @@ jobs:
         
       - name: Configure AWS credentials
         run: |
-          aws configure set aws_access_key_id "$aws-access-key-id" 
-          aws configure set aws_secret_access_key "$aws-secret-access-key"
-          aws configure set region "us-east-1"
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set region $AWS_REGION
           aws configure set output "text"
         env:
-          aws-access-key-id: test
-          aws-secret-access-key: test
-          aws-region: us-east-1
+          AWS_ACCESS_KEY_ID: testaction
+          AWS_SECRET_ACCESS_KEY: testaction
+          AWS_REGION: us-east-1
 
       - name: Check AWS credentials file in file directory
         run: |
