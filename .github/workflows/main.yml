@@ -10,12 +10,8 @@ jobs:
     steps:
 
       - name: Print the GitHub contexts to console
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo ${{ github.context }}
-          echo ${{ GITHUB_CONTEXT }}
-        
+          echo "${{ github.workspace }}"
 
       - name: Checkout repository
         uses: actions/checkout@v3.5.1
