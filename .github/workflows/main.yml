@@ -1,4 +1,4 @@
-name: Testing file directory
+name: Testing file directory.
 
 on:
   workflow_dispatch:
