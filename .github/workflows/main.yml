@@ -28,6 +28,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: testaction
           AWS_REGION: us-east-1
           
+      - name: Testing Brew
+        run: brew install awsebcli
+          
           # "/home/runner" is root(~) directory where AWS Creds are set
           # "/home/runner/work/valorant-agent-assistant/valorant-agent-assistant/" is checkout directory
       - name: Copy AWS creds to src code directory
