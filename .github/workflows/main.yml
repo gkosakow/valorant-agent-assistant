@@ -32,6 +32,11 @@ jobs:
           AWS_ACCESS_KEY_ID: testaction
           AWS_SECRET_ACCESS_KEY: testaction
           AWS_REGION: us-east-1
+          
+          # "/home/runner" is root(~) directory where AWS Creds are set
+          # "/home/runner/work/valorant-agent-assistant/valorant-agent-assistant/" is checkout directory
+      - name: Copy AWS creds to src code directory
+        run: cp -R /home/runner/.aws/ /home/runner/work/valorant-agent-assistant/valorant-agent-assistant/.aws/
 
       - name: Check AWS credentials file in file directory
         run: |
