@@ -1,4 +1,4 @@
-name: Testing file directory.
+name: Testing file directory
 
 on:
   workflow_dispatch:
@@ -19,9 +19,9 @@ jobs:
       - name: Configure AWS credentials
       - uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: testing with actions
-          aws-secret-access-key: testing with actions v2222
-          aws-region: us-east-1
+          aws-access-key-id: "testing with actions"
+          aws-secret-access-key: "testing with actions v2222"
+          aws-region: "us-east-1"
           
           # "/home/runner" is root(~) directory where AWS Creds are set
           # "/home/runner/work/valorant-agent-assistant/valorant-agent-assistant/" is checkout directory
