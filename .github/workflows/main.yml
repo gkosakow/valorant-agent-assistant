@@ -28,8 +28,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: testaction
           AWS_REGION: us-east-1
           
-      - name: Testing Brew
-        run: brew install awsebcli
+      - name: Install EB CLI
+        uses: sparkplug-app/install-eb-cli-action@v1.1.1
+        
+      - name: Check EB version
+        run: eb --version
           
           # "/home/runner" is root(~) directory where AWS Creds are set
           # "/home/runner/work/valorant-agent-assistant/valorant-agent-assistant/" is checkout directory
