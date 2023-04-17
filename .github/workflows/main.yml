@@ -11,15 +11,10 @@ jobs:
 
       - name: Print the GitHub contexts to console
         run: |
-          echo "${{ github.workspace }}"
+          echo ${{ github.workspace }}
 
       - name: Checkout repository
         uses: actions/checkout@v3.5.1
-        
-      - name: Checking current working directory  
-        run: |
-          pwd
-          ls -a
         
       - name: Configure AWS credentials
         run: |
@@ -38,11 +33,10 @@ jobs:
       - name: Copy AWS creds to src code directory
         run: cp -R /home/runner/.aws/ /home/runner/work/valorant-agent-assistant/valorant-agent-assistant/.aws/
 
-      - name: Check AWS credentials file in file directory
+      - name: Check AWS credentials file in working actions directory
         run: |
-          cd ~
+          cd ${{ github.workspace }}
           pwd
           ls -a
           cd .aws
-          ls -a
           cat credentials
