@@ -6,6 +6,14 @@ import { isNewUser } from '../../utilities/isNewUser';
 import { addUserDataToFirestore } from '../../utilities/addUserDataToFirestore';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
+import UserProfile from '../UserProfile';
+
+export interface User {
+    email: string,
+    picture: string,
+    firstName: string,
+    lastName: string,
+}
 
 function UserAuthentication() {
     const [isAuthenticated, setIsAuthenticated] = useContext(UserAuthContext);
@@ -16,7 +24,17 @@ function UserAuthentication() {
             if (user) {
                 // User is signed in
                 setIsAuthenticated(true);
-                sessionStorage.setItem("authenticated", "true");
+
+                // Storing logged in user info in sessionStorage
+                const loggedInUser: User = {
+                    email: user?.email!,
+                    picture: user?.photoURL!,
+                    firstName: user?.displayName!.split(' ').slice(0, -1).join(' ')!,
+                    lastName: user?.displayName!.split(' ').slice(-1).join(' ')!
+                }
+
+                sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+
                 console.log("SIGNED IN:", user);
 
                 // Initializes Firestore db with user information if first time login
@@ -33,8 +51,13 @@ function UserAuthentication() {
     }, [])
 
     return (
-        <div>
-            {isAuthenticated || sessionStorage.getItem("authenticated") ? <SignOut /> : <SignIn />}
+        <div className='sidebar-box-centered'>
+            {isAuthenticated || sessionStorage.getItem("authenticated") ?
+                <UserProfile />
+                :
+                <div className='login-button'>
+                    <SignIn />
+                </div>}
         </div>
     )
 }

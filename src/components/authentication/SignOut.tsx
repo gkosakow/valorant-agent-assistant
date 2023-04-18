@@ -1,16 +1,16 @@
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
-import { Button } from "@mui/material";
+import { IconButton } from "@mui/material";
+import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 function SignOut() {
 
-    const logout = () => {
+    const logOut = () => {
         signOut(auth)
             .then(() => {
-                console.log("Signing out");
                 // removing authentication item from sessionStorage and refreshing the page
-                sessionStorage.removeItem("authenticated");
+                sessionStorage.clear();
                 window.location.reload();
             }
             )
@@ -18,7 +18,16 @@ function SignOut() {
 
     return (
         <>
-            <Button onClick={logout} variant="outlined" startIcon={<LogoutIcon />}>Logout</Button>
+            <Tooltip title="Log out">
+                <IconButton
+                    className="logout-button"
+                    onClick={logOut}
+                    color="error"
+                    size="small"
+                >
+                    <LogoutIcon />
+                </IconButton>
+            </Tooltip>
         </>
     )
 }
