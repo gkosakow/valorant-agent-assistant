@@ -5,12 +5,16 @@ import { Map } from "./MapsPanel";
 // creating a card for a specific map, uses interface Map
 const MapCard = ({ map }: { map: Map }) => {
     return (
-        <Card className="map-card" elevation={3} sx={{ borderRadius: 3 }} style={{
-            backgroundImage: `url(${map.image})`
-        }}>
+        <Card
+            className="map-card"
+            elevation={3}
+            sx={{ borderRadius: "15px" }}
+            style={{ backgroundImage: `url(${map.image})` }}>
+
             <div className="map-card-gradient" />
+
             <div className="map-card-contents">
-                <div className="map-card-text" >
+                <div className="map-card-text">
                     <h1>{map.name.toUpperCase()}</h1>
                     <p>{map.coords.split("").join(" ")}</p>
                 </div>
@@ -18,8 +22,8 @@ const MapCard = ({ map }: { map: Map }) => {
                     <AgentsRow map={map} />
                 </div>
             </div>
-        </Card >
-    )
+        </Card>
+    );
 };
 
 export default MapCard;
