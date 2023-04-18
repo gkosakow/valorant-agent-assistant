@@ -22,7 +22,7 @@ const MapsPanel = () => {
 	}, []);
 
 	return (
-		<Box sx={{ width: '100%', flexWrap: 'wrap' }} className="map-grid">
+		<Box className="map-grid">
 			<Grid container>
 				{mapList.map(map => (
 					<Grid item xs={12} md={12} lg={6} key={map.id}>
