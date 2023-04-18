@@ -12,7 +12,7 @@ export interface Agent {
 	roleIcon: string
 }
 
-const AgentsRow = ({ map }: { map: Map }) => {
+function AgentsRow({ map }: { map: Map; }) {
 	const [agentApiIsLoading, setAgentApiIsLoading] = useState<boolean>(true);
 	const [agentList, setAgentList] = useState<Agent[]>([]);
 
@@ -24,21 +24,20 @@ const AgentsRow = ({ map }: { map: Map }) => {
 		});
 	}, []);
 
-	if (!agentApiIsLoading) {
-		return (
-			<div className="agent-button-row">
-				<AgentButton num={1} agentList={agentList} map={map} />
-				<AgentButton num={2} agentList={agentList} map={map} />
-				<AgentButton num={3} agentList={agentList} map={map} />
-				<AgentButton num={4} agentList={agentList} map={map} />
-				<AgentButton num={5} agentList={agentList} map={map} />
-			</div>
-		)
-	}
-	else {
-		return (<></>)
-	}
-
+	return (
+		<div>
+			{!agentApiIsLoading ?
+				<div className="agent-button-row">
+					<AgentButton num={1} agentList={agentList} map={map} />
+					<AgentButton num={2} agentList={agentList} map={map} />
+					<AgentButton num={3} agentList={agentList} map={map} />
+					<AgentButton num={4} agentList={agentList} map={map} />
+					<AgentButton num={5} agentList={agentList} map={map} />
+				</div>
+				:
+				<></>}
+		</div>
+	)
 }
 
 export default AgentsRow;
