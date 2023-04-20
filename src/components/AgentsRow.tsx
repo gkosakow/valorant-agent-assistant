@@ -15,6 +15,7 @@ export interface Agent {
 function AgentsRow({ map }: { map: Map; }) {
 	const [agentApiIsLoading, setAgentApiIsLoading] = useState<boolean>(true);
 	const [agentList, setAgentList] = useState<Agent[]>([]);
+	const agents = [1, 2, 3, 4, 5];
 
 	// function to use agents valorant API to update dynamically with every new agent
 	useEffect(() => {
@@ -28,14 +29,10 @@ function AgentsRow({ map }: { map: Map; }) {
 		<div>
 			{!agentApiIsLoading ?
 				<div className="agent-button-row">
-					<AgentButton num={1} agentList={agentList} map={map} />
-					<AgentButton num={2} agentList={agentList} map={map} />
-					<AgentButton num={3} agentList={agentList} map={map} />
-					<AgentButton num={4} agentList={agentList} map={map} />
-					<AgentButton num={5} agentList={agentList} map={map} />
+					{agents.map(num => (<AgentButton key={num} num={num} agentList={agentList} map={map} />))}
 				</div>
 				:
-				<></>}
+				null}
 		</div>
 	)
 }
