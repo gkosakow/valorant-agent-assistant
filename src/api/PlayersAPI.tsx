@@ -1,8 +1,8 @@
 import { Player } from "../components/Player";
 
-export const retrievePlayerInfo = async (riotID: string, tagline: string) => {
-    const playerID: string = riotID;
-    const playerTag: string = tagline;
+export const retrievePlayerInfo = async (player: Player) => {
+    const playerID: string = player.riotID;
+    const playerTag: string = player.tagline;
     const accountDataURL = `https://api.henrikdev.xyz/valorant/v1/account/${playerID}/${playerTag}`;
     const mmrDataURL = `https://api.henrikdev.xyz/valorant/v1/mmr/na/${playerID}/${playerTag}`;
 
@@ -40,7 +40,7 @@ export const retrievePlayerInfo = async (riotID: string, tagline: string) => {
         })
         .catch((error: any) => {
             // error handling to console
-            console.error("Player not found!");
+            console.error(error);
         });
 
     const allInfo = { ...accountInfo, ...mmrInfo };
