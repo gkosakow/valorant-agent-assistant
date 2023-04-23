@@ -1,11 +1,13 @@
-import { useState, useContext } from "react";
-import { Card, Stack, Input, IconButton } from "@mui/material";
+import { useState, useContext, useEffect } from "react";
+import { Input, IconButton } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CircularProgress from '@mui/material/CircularProgress';
 import InputAdornment from '@mui/material/InputAdornment';
 import { retrievePlayerInfo } from "../api/PlayersAPI";
 import { UserAuthContext } from "../App";
 import { savePlayerToFirestore } from "../utilities/savePlayerToFirestore";
-import { auth } from "../firebase/firebase";
+import { db, auth } from "../firebase/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
 
 export interface Player {
 	riotID: string,
@@ -19,10 +21,11 @@ export interface Player {
 
 const Player = ({ num }: { num: number }) => {
 	const [isAuthenticated] = useContext(UserAuthContext);
+	const [playerLoading, setPlayerLoading] = useState<boolean>(false);
+	const [enrichLoading, setEnrichLoading] = useState<boolean>(false);
 	const [player, setPlayer] = useState<Player>({
 		riotID: "",
-		tagline: "",
-		bannerPhoto: ""
+		tagline: ""
 	});
 	const user = auth.currentUser;
 
@@ -36,19 +39,57 @@ const Player = ({ num }: { num: number }) => {
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
-		console.log("SUBMITTED");
+		enrichPlayerInfo();
+	}
 
+	const enrichPlayerInfo = (): void => {
+		setEnrichLoading(true);
 		// function to use agents valorant API to update dynamically with every new agent
 		if (player.riotID && player.tagline) {
-			retrievePlayerInfo(player.riotID, player.tagline)
+			retrievePlayerInfo(player)
 				.then((response: any) => {
 					setPlayer({ ...player, ...response });
-					if (isAuthenticated) {
-						savePlayerToFirestore(user, num, player);
-					}
+					if (isAuthenticated) { savePlayerToFirestore(user, num, player); }
 				})
 		}
+		setEnrichLoading(false);
 	}
+
+	// takes agents from Firestore DB and loads them into state variables
+	const loadPlayerFromFirestore = (user: any, playerNum: number) => {
+		console.log("Loading players from firestore");
+		setPlayerLoading(true);
+		// referencing map within Maps collection inside of the users unique storage
+		const docRef = doc(db, "Users", `${user.uid}`, "Players", `player${playerNum}`);
+
+		// allows for real time data updates when using this listener
+		onSnapshot(docRef, (doc) => {
+			// check if agentName inside DB exists, if so, change it
+			let loadedPlayerRiotID = doc.get(`riotID`);
+			let loadedPlayerTagline = doc.get(`tagline`);
+
+			if (loadedPlayerRiotID && loadedPlayerTagline) {
+				setPlayerLoading(true);
+				setPlayer({ ...player, riotID: loadedPlayerRiotID, tagline: loadedPlayerTagline });
+				console.log(player);
+			}
+			setPlayerLoading(false);
+		});
+	}
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			loadPlayerFromFirestore(user, num);
+		}
+	}, [isAuthenticated])
+
+	useEffect(() => {
+		console.log("TESTING");
+		if (playerLoading === false) {
+			enrichPlayerInfo();
+		}
+	}, [playerLoading])
+
 
 	return (
 		<div className="player">
@@ -75,7 +116,7 @@ const Player = ({ num }: { num: number }) => {
 						inputProps={{ maxLength: 5, style: { padding: 0 } }}
 						startAdornment={<InputAdornment position="start">#</InputAdornment>}
 					/>
-					<IconButton type="submit"><CheckCircleIcon sx={{ width: 20 }} /></IconButton>
+					<IconButton type="submit"><CheckCircleIcon sx={{ width: 15 }} /></IconButton>
 				</form>
 				<div className="player-stats">
 					{player.rank} {player.rr}RR
