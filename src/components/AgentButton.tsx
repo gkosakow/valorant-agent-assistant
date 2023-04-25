@@ -25,7 +25,7 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
     const handleChange = (event: any) => {
         setSelectedAgent(event.target.value);
         if (isAuthenticated) {
-            saveAgentToFirestore(auth.currentUser, num, map, event.target.value);
+            saveAgentToFirestore(user, num, map, event.target.value);
         }
     };
 
@@ -45,7 +45,7 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
         });
     }
 
-    // calling loadAgentFromFirestore on every change of isAuthenticated
+    // calling loadAgentFromFirestore when user logs in
     useEffect(() => {
         if (isAuthenticated) {
             loadAgentFromFirestore(user, num, map);
