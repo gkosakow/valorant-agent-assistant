@@ -179,7 +179,7 @@ body{
 }
 
 .player-tagline {
-  width: 40%;
+  width: 50%;
 }
 
 .player-input {
@@ -264,4 +264,21 @@ body{
 .login-button {
   display: flex;
   justify-content: center;
+}
+
+.loading {
+  transform: scaleX(-1);
+  animation-name: spin;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease; 
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(360deg);
+  }
+  to {
+      transform:rotate(0deg);
+  }
 }
