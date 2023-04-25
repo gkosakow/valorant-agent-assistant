@@ -1,15 +1,12 @@
 import { Player } from "../components/Player";
 
 export const retrievePlayerInfo = async (player: Player) => {
-    const playerID: string = player.riotID;
-    const playerTag: string = player.tagline;
-    const accountDataURL = `https://api.henrikdev.xyz/valorant/v1/account/${playerID}/${playerTag}`;
-    const mmrDataURL = `https://api.henrikdev.xyz/valorant/v1/mmr/na/${playerID}/${playerTag}`;
+    const accountDataURL = `https://api.henrikdev.xyz/valorant/v1/account/${player.riotID}/${player.tagline}`;
+    const mmrDataURL = `https://api.henrikdev.xyz/valorant/v1/mmr/na/${player.riotID}/${player.tagline}`;
 
     const accountInfo = await fetch(accountDataURL)
         .then((response: any) => response.json())
         .then((data: any) => {
-            console.log("Player account data retrieved!");
             const rawData = data.data;
 
             const accountData = {
@@ -21,13 +18,12 @@ export const retrievePlayerInfo = async (player: Player) => {
         })
         .catch((error: any) => {
             // error handling to console
-            console.error("Player not found!");
+            console.error(error);
         });
 
     const mmrInfo = await fetch(mmrDataURL)
         .then((response: any) => response.json())
         .then((data: any) => {
-            console.log("Player MMR data retrieved!");
             const rawData = data.data;
 
             const mmrData = {
@@ -43,6 +39,7 @@ export const retrievePlayerInfo = async (player: Player) => {
             console.error(error);
         });
 
-    const allInfo = { ...accountInfo, ...mmrInfo };
-    return allInfo;
+    const updatedPlayer = { riotID: player.riotID, tagline: player.tagline, ...accountInfo, ...mmrInfo };
+    console.log("Player data retrieved!");
+    return updatedPlayer;
 }
