@@ -11,7 +11,7 @@ export const retrievePlayerInfo = async (player: Player) => {
 
             const accountData = {
                 accLevel: rawData.account_level,
-                bannerPhoto: rawData.card.wide,
+                bannerPhoto: rawData.card.small,
             }
             // setting rawData to the agent array within the data payload
             return accountData;
