@@ -1,13 +1,14 @@
 import Player from "./Player";
-import { Card } from '@mui/material';
 
 function PlayerWindow() {
-    const players = [1, 2, 3, 4, 5];
+    const players: number[] = [1, 2, 3, 4, 5];
+    const subs: number[] = [6, 7];
 
     return (
-        <Card className="player-window" sx={{ borderRadius: "16px" }} elevation={3} >
+        <div className="player-window">
             {players.map(num => (<Player key={num} num={num} />))}
-        </Card>
+            {/* {subs.map(num => (<Player key={num} num={num} />))} */}
+        </div>
     )
 }
 
