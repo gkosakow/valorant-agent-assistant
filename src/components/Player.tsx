@@ -1,14 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { Input, IconButton } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SyncIcon from '@mui/icons-material/Sync';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import InputAdornment from '@mui/material/InputAdornment';
 import { retrievePlayerInfo } from "../api/PlayersAPI";
 import { UserAuthContext } from "../App";
 import { savePlayerToFirestore } from "../utilities/savePlayerToFirestore";
 import { db, auth } from "../firebase/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-
+import { TrackerInfoButton } from "./TrackerInfoButton";
 export interface Player {
 	riotID: string,
 	tagline: string,
@@ -23,6 +23,7 @@ const Player = ({ num }: { num: number }) => {
 	const user = auth.currentUser;
 	const [isAuthenticated] = useContext(UserAuthContext);
 	const [enrichLoading, setEnrichLoading] = useState<boolean>(false);
+	const [playerLoading, setPlayerLoading] = useState<boolean>(false);
 	const defaultPlayerCard: string = "https://media.valorant-api.com/playercards/efaf392a-412d-0d4f-4413-ddbdb70d841d/smallart.png"
 
 	const [player, setPlayer] = useState<Player>({
@@ -102,6 +103,7 @@ const Player = ({ num }: { num: number }) => {
 				<div className="player-contents">
 					<form className="player-input-row" onSubmit={handleSubmit}>
 						<Input
+							sx={{ fontSize: "13px" }}
 							className="player-name"
 							onChange={(e) => handleChangePlayerName(e.target.value)}
 							disableUnderline
@@ -112,6 +114,7 @@ const Player = ({ num }: { num: number }) => {
 							inputProps={{ maxLength: 16, style: { padding: 0 } }}
 						/>
 						<Input
+							sx={{ fontSize: "13px" }}
 							className="player-tagline"
 							onChange={(e) => handleChangePlayerTagline(e.target.value)}
 							disableUnderline
@@ -120,13 +123,16 @@ const Player = ({ num }: { num: number }) => {
 							size="small"
 							autoComplete='off'
 							inputProps={{ maxLength: 5, style: { padding: 0 } }}
-							startAdornment={<InputAdornment position="start">#</InputAdornment>}
+							startAdornment={<InputAdornment sx={{ width: 5 }} position="start">#</InputAdornment>}
 						/>
-						<IconButton type="submit">{enrichLoading ? <SyncIcon className="loading" sx={{ width: 20 }} /> : <CheckCircleIcon sx={{ width: 20 }} />}</IconButton>
+						<IconButton type="submit">{enrichLoading || playerLoading ? <AutorenewIcon className="loading" sx={{ width: 20, height: 20 }} /> : <CheckCircleIcon sx={{ width: 20, height: 20 }} />}</IconButton>
 					</form>
 					<div className="player-stats">
-						{player.rank} {player.rr}RR
-						<img className="player-rank-icon" src={player.rankIcon} />
+						{player.rankIcon ? <img className="player-rank-icon" src={player.rankIcon} /> : <img className="player-rank-icon" src="src/assets/images/unranked.png" />}
+						{player.rank ? <>{player.rank} {player.rr}RR</> : <>Unknown 0RR</>}
+						<div className="tracker-button">
+							<TrackerInfoButton player={player} />
+						</div>
 					</div>
 				</div>
 			</div>
