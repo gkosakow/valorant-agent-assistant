@@ -4,6 +4,8 @@ import { Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MapsPanel from './components/MapsPanel';
 import Sidebar from './components/Sidebar';
+import { Analytics } from '@vercel/analytics/react';
+
 
 const darkTheme = createTheme({
 	palette: {
@@ -26,6 +28,7 @@ function App() {
 					</Box>
 				</Box >
 			</UserAuthContext.Provider>
+			<Analytics />
 		</ThemeProvider >
 	)
 }
