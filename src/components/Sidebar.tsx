@@ -7,7 +7,7 @@ const Sidebar = () => {
 	return (
 		<Box className="sidebar">
 			<Box className="logo">
-				<img src={"./src/public/static/images/valorant-logo.png"} />
+				<img src="./src/public/static/images/valorant-logo.png" />
 			</Box>
 			<UserAuthentication />
 			<PlayerWindow />
