@@ -9,6 +9,7 @@ import { savePlayerToFirestore } from "../utilities/savePlayerToFirestore";
 import { db, auth } from "../firebase/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 import { TrackerInfoButton } from "./TrackerInfoButton";
+import unranked from "../public/static/images/unranked.png"
 export interface Player {
 	riotID: string,
 	tagline: string,
@@ -128,7 +129,7 @@ const Player = ({ num }: { num: number }) => {
 						<IconButton type="submit">{enrichLoading || playerLoading ? <AutorenewIcon className="loading" sx={{ width: 20, height: 20 }} /> : <CheckCircleIcon sx={{ width: 20, height: 20 }} />}</IconButton>
 					</form>
 					<div className="player-stats">
-						{player.rankIcon ? <img className="player-rank-icon" src={player.rankIcon} /> : <img className="player-rank-icon" src={"./src/public/static/images/unranked.png"} />}
+						{player.rankIcon ? <img className="player-rank-icon" src={player.rankIcon} /> : <img className="player-rank-icon" src={unranked} />}
 						{player.rank ? <>{player.rank} {player.rr}RR</> : <>Unknown 0RR</>}
 						<div className="tracker-button">
 							<TrackerInfoButton player={player} />
