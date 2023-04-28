@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Tungsten";
-  src: local("Tungsten-Bold"), url("./assets/fonts/Tungsten-Bold/Tungsten-Bold.ttf") format("truetype");
+  src: local("Tungsten-Bold"), url("./public/static/fonts/Tungsten-Bold/Tungsten-Bold.ttf") format("truetype");
 }
 
 :root {

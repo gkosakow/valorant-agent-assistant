@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import "./assets/fonts/Tungsten-Bold/Tungsten-Bold.ttf";
+import "./public/static/fonts/Tungsten-Bold/Tungsten-Bold.ttf";
 import { Box } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MapsPanel from './components/MapsPanel';
