@@ -26,11 +26,10 @@ body{
 }
 
 .app {
-  position: relative;
   display: flex;
   height: 100vh;
-  padding-left: 10%;
-  padding-right: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .app-content {
