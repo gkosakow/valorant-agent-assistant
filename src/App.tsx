@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MapsPanel from './components/MapsPanel';
 import Sidebar from './components/Sidebar';
 import { Analytics } from '@vercel/analytics/react';
+import { initializeLogRocket } from './logrocket/config';
 
 
 const darkTheme = createTheme({
@@ -17,6 +18,7 @@ export const UserAuthContext = createContext<any>(null);
 
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+	initializeLogRocket();
 
 	return (
 		<ThemeProvider theme={darkTheme}>

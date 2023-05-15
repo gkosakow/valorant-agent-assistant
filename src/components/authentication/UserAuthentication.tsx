@@ -7,8 +7,10 @@ import { addUserDataToFirestore } from '../../utilities/addUserDataToFirestore';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
 import UserProfile from '../UserProfile';
+import LogRocket from 'logrocket';
 
 export interface User {
+    id: string,
     email: string,
     picture: string,
     firstName: string,
@@ -27,11 +29,20 @@ function UserAuthentication() {
 
                 // Storing logged in user info in sessionStorage
                 const loggedInUser: User = {
+                    id: user?.uid!,
                     email: user?.email!,
                     picture: user?.photoURL!,
                     firstName: user?.displayName!.split(' ').slice(0, -1).join(' ')!,
                     lastName: user?.displayName!.split(' ').slice(-1).join(' ')!
                 }
+
+                LogRocket.identify(user.uid, {
+                    name: user.displayName,
+                    email: user.email,
+
+                    // Add your own custom user variables here, ie:
+                    subscriptionType: 'pro'
+                });
 
                 sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
