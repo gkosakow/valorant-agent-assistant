@@ -8,6 +8,8 @@ import SignIn from './SignIn';
 import SignOut from './SignOut';
 import UserProfile from '../UserProfile';
 import LogRocket from 'logrocket';
+import { identify } from 'logrocket';
+import { identifyLogRocketUser } from '../../logrocket/identity';
 
 export interface User {
     id: string,
@@ -36,13 +38,7 @@ function UserAuthentication() {
                     lastName: user?.displayName!.split(' ').slice(-1).join(' ')!
                 }
 
-                LogRocket.identify(user.uid, {
-                    name: user.displayName,
-                    email: user.email,
-
-                    // Add your own custom user variables here, ie:
-                    subscriptionType: 'pro'
-                });
+                identifyLogRocketUser(loggedInUser);
 
                 sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 

@@ -6,8 +6,14 @@ function PlayerWindow() {
 
     return (
         <div className="player-window">
-            {players.map(num => (<Player key={num} num={num} />))}
-            {/* {subs.map(num => (<Player key={num} num={num} />))} */}
+            <div className="main-roster">
+                Main Roster
+                {players.map(num => (<Player key={num} num={num} />))}
+            </div>
+            <div className="sub-roster">
+                Subtitutes
+                {subs.map(num => (<Player key={num} num={num} />))}
+            </div>
         </div>
     )
 }
