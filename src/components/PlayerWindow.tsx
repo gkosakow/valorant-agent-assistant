@@ -5,16 +5,14 @@ function PlayerWindow() {
     const subs: number[] = [6, 7];
 
     return (
-        <div className="player-window">
-            <div className="main-roster">
-                Main Roster
-                {players.map(num => (<Player key={num} num={num} />))}
+        <>
+            <div className="player-window-container">
+                <div className="player-window">
+                    {players.map(num => (<Player key={num} num={num} />))}
+                    {subs.map(num => (<Player key={num} num={num} />))}
+                </div>
             </div>
-            <div className="sub-roster">
-                Subtitutes
-                {subs.map(num => (<Player key={num} num={num} />))}
-            </div>
-        </div>
+        </>
     )
 }
 
