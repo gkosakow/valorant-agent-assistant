@@ -199,7 +199,7 @@ body{
 }
 
 .player-window-container {
-  flex-direction: ;
+  flex-direction: column;
   display: flex;
   justify-content: space-evenly;
   margin-top: 16px;
