@@ -21,17 +21,19 @@ function App() {
 	initializeLogRocket();
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<UserAuthContext.Provider value={[isAuthenticated, setIsAuthenticated]}>
-				<Box className="app">
-					<Sidebar />
-					<Box className="app-content">
-						<MapsPanel />
-					</Box>
-				</Box >
-			</UserAuthContext.Provider>
-			<Analytics />
-		</ThemeProvider >
+		<div className="all-content">
+			<ThemeProvider theme={darkTheme}>
+				<UserAuthContext.Provider value={[isAuthenticated, setIsAuthenticated]}>
+					<Box className="app">
+						<Sidebar />
+						<Box className="app-content">
+							<MapsPanel />
+						</Box>
+					</Box >
+				</UserAuthContext.Provider>
+				<Analytics />
+			</ThemeProvider >
+		</div>
 	)
 }
 
