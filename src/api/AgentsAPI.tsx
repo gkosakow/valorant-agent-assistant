@@ -14,7 +14,14 @@ export const retrieveAgents = async () => {
             // fills the agents array with responses from agents API besides The Range
             rawData.map((agent: any) => {
                 if (agent.uuid !== "ded3520f-4264-bfed-162d-b080e2abccf9") {
-                    updatedAgentList.push({ id: agent.uuid, name: agent.displayName, image: agent.displayIcon, role: agent.role.displayName, roleIcon: agent.role.displayIcon });
+                    updatedAgentList.push({
+                        id: agent.uuid,
+                        name: agent.displayName,
+                        image: agent.displayIcon,
+                        killFeedImage: agent.killfeedPortrait,
+                        role: agent.role.displayName,
+                        roleIcon: agent.role.displayIcon
+                    });
                 }
             })
 

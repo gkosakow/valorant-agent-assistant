@@ -8,6 +8,7 @@ import { Map } from './MapsPanel';
 import { saveAgentToFirestore } from '../utilities/saveAgentToFirestore';
 import { UserAuthContext } from '../App';
 import { getAgentObject } from '../utilities/agentNametoObj';
+import AgentListItem from './AgentListItem';
 
 const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[], map: Map }) => {
     const [isAuthenticated] = useContext(UserAuthContext);
@@ -16,6 +17,7 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
     const [selectedAgent, setSelectedAgent] = useState<Agent>({
         id: "",
         image: "",
+        killFeedImage: "",
         name: "",
         role: "",
         roleIcon: ""
@@ -75,7 +77,9 @@ const AgentButton = ({ num, agentList, map }: { num: number, agentList: Agent[],
                     onChange={handleChange}
                 >
                     {agentList.map(agent => (
-                        <MenuItem key={agent.id} value={agent as any}>{agent.name}</MenuItem>
+                        <MenuItem key={agent.id} value={agent as any}>
+                            <AgentListItem agent={agent} />
+                        </MenuItem>
                     ))}
                 </Select>
             </FormControl>

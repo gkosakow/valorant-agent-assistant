@@ -8,6 +8,7 @@ export interface Agent {
 	id: string,
 	name: string,
 	image: string,
+	killFeedImage: string,
 	role: string,
 	roleIcon: string
 }
