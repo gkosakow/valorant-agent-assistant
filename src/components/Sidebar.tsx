@@ -12,9 +12,9 @@ const Sidebar = () => {
 			</Box>
 			<UserAuthentication />
 			<PlayerWindow />
-			<div>
+			{/* <div>
 				<Credits />
-			</div>
+			</div> */}
 		</Box>
 	);
 }
