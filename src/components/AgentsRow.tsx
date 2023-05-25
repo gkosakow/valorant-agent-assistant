@@ -27,7 +27,7 @@ function AgentsRow({ map }: { map: Map; }) {
 	}, []);
 
 	return (
-		<div>
+		<div className="agent-button-row-container">
 			{!agentApiIsLoading ?
 				<div className="agent-button-row">
 					{agents.map(num => (<AgentButton key={num} num={num} agentList={agentList} map={map} />))}

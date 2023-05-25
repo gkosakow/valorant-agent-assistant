@@ -8,10 +8,14 @@ function PlayerWindow() {
         <>
             <div className="player-window-container">
                 <div className="player-window">
-                    <div className="roster-label">MAIN ROSTER</div>
-                    {players.map(num => (<Player key={num} num={num} />))}
-                    <div className="roster-label">SUB ROSTER</div>
-                    {subs.map(num => (<Player key={num} num={num} />))}
+                    <div className="roster-container-main">
+                        <div className="roster-label">MAIN ROSTER</div>
+                        {players.map(num => (<Player key={num} num={num} />))}
+                    </div>
+                    <div className="roster-container-sub">
+                        <div className="roster-label">SUB ROSTER</div>
+                        {subs.map(num => (<Player key={num} num={num} />))}
+                    </div>
                 </div>
             </div>
         </>
