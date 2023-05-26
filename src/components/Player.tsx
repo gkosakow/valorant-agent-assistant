@@ -126,7 +126,12 @@ const Player = ({ num }: { num: number }) => {
 							inputProps={{ maxLength: 5, style: { padding: 0 } }}
 							startAdornment={<InputAdornment sx={{ width: 5 }} position="start">#</InputAdornment>}
 						/>
-						<IconButton type="submit">{enrichLoading || playerLoading ? <AutorenewIcon className="loading" sx={{ width: 20, height: 20 }} /> : <CheckCircleIcon sx={{ width: 20, height: 20 }} />}</IconButton>
+						<IconButton style={{ backgroundColor: "transparent" }} type="submit">
+							{enrichLoading || playerLoading ?
+								<AutorenewIcon className="loading" sx={{ width: 20, height: 20 }} />
+								:
+								<CheckCircleIcon sx={{ width: 20, height: 20, "&:hover": { filter: 'drop-shadow(0px 0px 6px white)' } }} />}
+						</IconButton>
 					</form>
 					<div className="player-stats">
 						{player.rankIcon ? <img className="player-rank-icon" src={player.rankIcon} /> : <img className="player-rank-icon" src={unranked} />}

@@ -211,7 +211,12 @@ body {
 
 .player {
   display: flex;
-  align-items: center;
+  align-items: center; 
+  border-radius: 8px; 
+}
+
+.player:hover { 
+  filter: drop-shadow(0px 0px 2px rgb(102, 102, 145)); 
 }
 
 .player-name {
@@ -269,6 +274,7 @@ body {
   border-radius: 0px 0px 8px 0px;
   background-color:#3f405e;
   height: 40px;
+  cursor: default;
 }
 
 .player-rank-icon {
