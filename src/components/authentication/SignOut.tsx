@@ -1,8 +1,7 @@
 import { auth } from "../../firebase/firebase";
 import { signOut } from "firebase/auth";
-import { IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 import Tooltip from '@mui/material/Tooltip';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 function SignOut() {
 
@@ -19,14 +18,15 @@ function SignOut() {
     return (
         <>
             <Tooltip title="Log out">
-                <IconButton
+                <Button
                     className="logout-button"
                     onClick={logOut}
                     color="error"
                     size="small"
+                    variant="outlined"
                 >
-                    <LogoutIcon />
-                </IconButton>
+                    LOGOUT
+                </Button>
             </Tooltip>
         </>
     )
