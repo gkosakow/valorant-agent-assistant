@@ -13,7 +13,7 @@ export const retrieveMaps = async () => {
 
             // fills the maps array with responses from maps API besides "The Range"
             rawData.map((map: any) => {
-                if (map.displayName !== "The Range") {
+                if (map.displayName !== "The Range" && map.coordinates !== null) {
                     updatedMapList.push({ id: map.uuid, name: map.displayName, image: map.splash, coords: map.coordinates });
                 }
             })
