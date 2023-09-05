@@ -16,6 +16,5 @@ jobs:
       uses: Khan/pull-request-comment-trigger@1.0.0
       with:
         # The emoji "reaction" to put on the comment to indicate that the trigger was detected. For example, "rocket"
-        reaction: "rocket"
-        # The string to look for in pull-request descriptions and comments. For example "#build/android"
         trigger: "gregory"
+        # The string to look for in pull-request descriptions and comments. For example "#build/android"
