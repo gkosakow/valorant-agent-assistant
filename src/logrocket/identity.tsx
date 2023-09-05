@@ -11,3 +11,5 @@ export const identifyLogRocketUser = (user: User) => {
         subscriptionType: 'pro'
     });
 }
+
+// test test
