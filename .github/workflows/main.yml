@@ -1,11 +1,11 @@
-name: Code Ran Check
+name: Code Run Check
 
 on:
   issue_comment:
     types: [created]
     
 jobs:
-  keyword_check:
+  run_comment_check:
     runs-on: [ubuntu-latest]
     steps:
     - name: Pull Request Comment Trigger
