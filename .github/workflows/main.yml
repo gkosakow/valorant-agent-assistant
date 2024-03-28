@@ -11,7 +11,7 @@ jobs:
     - name: Pull Request Comment Trigger
       # You may pin to the exact commit or the version.
       # uses: Khan/pull-request-comment-trigger@af6260d48c05e1f2f1641f9d14794bd04687c023
-      uses: Khan/pull-request-comment-trigger@1.0.0
+      uses: Khan/pull-request-comment-trigger@v1.1.0
       with:
         # The emoji "reaction" to put on the comment to indicate that the trigger was detected. For example, "rocket"
         trigger: "gregory"
